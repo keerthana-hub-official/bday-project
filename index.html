@@ -124,12 +124,12 @@
 
         .main-content {
             display: grid;
-            grid-template-columns: 1fr 1fr 400px;
+            grid-template-columns: 1fr 1fr; /* Adjusted for no chatbot */
             gap: 2rem;
             padding: 2rem;
         }
 
-        .form-section, .birthday-list, .chatbot-section {
+        .form-section, .birthday-list { /* Removed .chatbot-section */
             background: linear-gradient(135deg, #ffffff, #f8f9ff);
             padding: 2.5rem;
             border-radius: 20px;
@@ -138,7 +138,7 @@
             position: relative;
         }
 
-        .form-section::before, .birthday-list::before, .chatbot-section::before {
+        .form-section::before, .birthday-list::before { /* Removed .chatbot-section::before */
             content: '';
             position: absolute;
             top: 0;
@@ -158,157 +158,6 @@
             gap: 0.5rem;
             text-align: center;
             justify-content: center;
-        }
-
-        /* Chatbot Styles */
-        .chatbot-section {
-            height: 600px;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .chat-messages {
-            flex: 1;
-            overflow-y: auto;
-            padding: 1rem;
-            background: #f8f9fa;
-            border-radius: 15px;
-            margin-bottom: 1rem;
-            min-height: 300px;
-        }
-
-        .message {
-            margin-bottom: 1rem;
-            padding: 1rem;
-            border-radius: 15px;
-            max-width: 80%;
-            word-wrap: break-word;
-        }
-
-        .message.user {
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            color: white;
-            margin-left: auto;
-            text-align: right;
-        }
-
-        .message.bot {
-            background: #e9ecef;
-            color: #2c3e50;
-            border: 1px solid #dee2e6;
-        }
-
-        .message.system {
-            background: linear-gradient(135deg, #00b894, #00a085);
-            color: white;
-            text-align: center;
-            border-radius: 25px;
-            font-size: 0.9rem;
-            padding: 0.5rem 1rem;
-        }
-
-        .message.error {
-            background: linear-gradient(135deg, #ff6b6b, #ee5a24);
-            color: white;
-            text-align: center;
-            border-radius: 25px;
-            font-size: 0.9rem;
-            padding: 0.5rem 1rem;
-        }
-
-        .chat-input-area {
-            display: flex;
-            gap: 1rem;
-            align-items: flex-end;
-        }
-
-        .chat-input {
-            flex: 1;
-            padding: 1rem;
-            border: 2px solid #e0e6ed;
-            border-radius: 15px;
-            resize: none;
-            font-family: inherit;
-            max-height: 100px;
-            min-height: 50px;
-        }
-
-        .chat-input:focus {
-            outline: none;
-            border-color: #667eea;
-            box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.15);
-        }
-
-        .chat-send-btn {
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            color: white;
-            border: none;
-            padding: 1rem;
-            border-radius: 15px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            min-width: 60px;
-        }
-
-        .chat-send-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
-        }
-
-        .chat-send-btn:disabled {
-            opacity: 0.6;
-            cursor: not-allowed;
-            transform: none;
-        }
-
-        .file-upload-area {
-            border: 2px dashed #667eea;
-            border-radius: 15px;
-            padding: 2rem;
-            text-align: center;
-            margin-bottom: 1rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            background: rgba(102, 126, 234, 0.05);
-        }
-
-        .file-upload-area:hover {
-            background: rgba(102, 126, 234, 0.1);
-            border-color: #5a67d8;
-        }
-
-        .file-upload-area.dragover {
-            background: rgba(102, 126, 234, 0.2);
-            border-color: #5a67d8;
-            transform: scale(1.02);
-        }
-
-        .upload-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-        }
-
-        .processing-indicator {
-            display: none;
-            align-items: center;
-            gap: 0.5rem;
-            color: #667eea;
-            font-weight: 600;
-            margin-bottom: 1rem;
-        }
-
-        .spinner {
-            width: 20px;
-            height: 20px;
-            border: 2px solid #e0e6ed;
-            border-top: 2px solid #667eea;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
         }
 
         /* Form and List Styles */
@@ -392,73 +241,140 @@
             overflow-y: auto;
         }
 
-        .birthday-item {
+        /* Table-like structure for birthday list */
+        .birthday-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1.5rem;
+        }
+
+        .birthday-table th, .birthday-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #e0e6ed;
+        }
+
+        .birthday-table th {
+            background: #f0f2f5;
+            color: #34495e;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            position: sticky;
+            top: 0;
+            z-index: 2;
+        }
+
+        .birthday-table tbody tr {
             background: linear-gradient(135deg, #f8f9fa, #e9ecef);
-            margin-bottom: 1.5rem;
-            padding: 1.5rem;
-            border-radius: 15px;
-            border-left: 5px solid #667eea;
-            transition: all 0.4s ease;
-            position: relative;
-            cursor: pointer;
+            transition: all 0.3s ease;
         }
 
-        .birthday-item:hover {
-            transform: translateX(10px) scale(1.02);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        .birthday-table tbody tr:hover {
+            background: #e0e6ed;
+            transform: scale(1.01);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
         }
 
-        .birthday-item.today {
+        .birthday-table tbody tr.today {
             background: linear-gradient(135deg, #ff6b6b, #ee5a24);
             color: white;
-            border-left-color: white;
             animation: pulse 2s infinite, glow 2s ease-in-out infinite;
+        }
+
+        .birthday-table tbody tr.today .birthday-age,
+        .birthday-table tbody tr.today .days-until {
+            background: rgba(255, 255, 255, 0.25);
+            color: white;
+        }
+
+        .birthday-name-cell {
+            font-weight: 600;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .birthday-date-cell {
+            font-size: 0.95rem;
+            opacity: 0.9;
+        }
+
+        .birthday-contact-cell {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        .birthday-age, .days-until {
+            display: inline-block;
+            background: rgba(102, 126, 234, 0.15);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: #667eea;
+            margin-left: 0.5rem;
+        }
+
+        .days-until {
+            background: rgba(0, 184, 148, 0.15);
+            color: #00b894;
+        }
+
+        .birthday-table tbody tr.today .days-until {
+            background: rgba(255, 255, 255, 0.25);
+            color: white;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            justify-content: flex-end; /* Align buttons to the right */
+        }
+
+        .action-buttons .btn-small {
+            padding: 0.6rem 1rem;
+            border-radius: 10px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: none;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .action-buttons .btn-small.call {
+            background: linear-gradient(135deg, #00d2ff, #3a7bd5);
+            color: white;
+        }
+
+        .action-buttons .btn-small.call:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 210, 255, 0.3);
+        }
+
+        .action-buttons .btn-small.whatsapp {
+            background: linear-gradient(135deg, #25D366, #128C7E);
+            color: white;
+        }
+
+        .action-buttons .btn-small.whatsapp:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
         }
 
         @keyframes pulse {
             0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.03); }
+            50% { transform: scale(1.01); }
         }
 
         @keyframes glow {
-            0%, 100% { box-shadow: 0 0 20px rgba(255, 107, 107, 0.5); }
-            50% { box-shadow: 0 0 40px rgba(255, 107, 107, 0.8); }
-        }
-
-        .birthday-name {
-            font-weight: 700;
-            font-size: 1.2rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .birthday-date {
-            font-size: 1rem;
-            opacity: 0.8;
-            margin-bottom: 0.3rem;
-        }
-
-        .birthday-contact {
-            font-size: 0.9rem;
-            opacity: 0.7;
-            font-weight: 500;
-        }
-
-        .birthday-age {
-            position: absolute;
-            right: 1.5rem;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(102, 126, 234, 0.15);
-            padding: 0.5rem 1rem;
-            border-radius: 25px;
-            font-size: 0.9rem;
-            font-weight: 700;
-            color: #667eea;
-        }
-
-        .birthday-item.today .birthday-age {
-            background: rgba(255, 255, 255, 0.25);
-            color: white;
+            0%, 100% { box-shadow: 0 0 15px rgba(255, 107, 107, 0.4); }
+            50% { box-shadow: 0 0 25px rgba(255, 107, 107, 0.6); }
         }
 
         .month-section {
@@ -587,896 +503,149 @@
             opacity: 0.6;
         }
 
-        .contact-btn {
-            background: linear-gradient(135deg, #00d2ff, #3a7bd5);
-            color: white;
-            border: none;
-            padding: 0.5rem 1rem;
+        /* Modal for Greeting Selection */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1001; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+            backdrop-filter: blur(5px);
+            padding-top: 60px;
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 5% auto; /* 15% from the top and centered */
+            padding: 30px;
             border-radius: 20px;
-            font-size: 0.8rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            width: 90%; /* Could be more responsive */
+            max-width: 600px;
+            position: relative;
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .close-button {
+            color: #aaa;
+            position: absolute;
+            top: 15px;
+            right: 25px;
+            font-size: 28px;
+            font-weight: bold;
             cursor: pointer;
-            margin-top: 0.5rem;
-            transition: all 0.3s ease;
+            transition: color 0.3s ease;
         }
 
-        .contact-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0, 210, 255, 0.3);
+        .close-button:hover,
+        .close-button:focus {
+            color: #333;
+            text-decoration: none;
         }
 
-        @media (max-width: 1200px) {
-            .main-content {
-                grid-template-columns: 1fr;
-                gap: 1rem;
-                padding: 1rem;
-            }
-            
-            .chatbot-section {
-                order: -1;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .header h1 {
-                font-size: 2.5rem;
-            }
-            
-            .form-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .chat-input-area {
-                flex-direction: column;
-                gap: 0.5rem;
-            }
-        }
-    </style>
-</head>
-<body>
-    <!-- Animated Background Elements -->
-    <div class="floating-elements">
-        <div class="balloon">🎈</div>
-        <div class="balloon">🎈</div>
-        <div class="balloon">🎈</div>
-        <div class="balloon">🎈</div>
-        <div class="balloon">🎈</div>
-        <div class="cake">🎂</div>
-        <div class="cake">🍰</div>
-        <div class="cake">🧁</div>
-    </div>
-
-    <div class="container">
-        <div class="header">
-            <h1>🤖 Smart Birthday Reminder</h1>
-            <p>AI-powered birthday management! Upload Excel, CSV, PDF files and chat with AI!</p>
-        </div>
-
-        <div class="stats">
-            <div class="stat-card">
-                <div class="stat-number" id="totalBirthdays">0</div>
-                <div class="stat-label">Total Birthdays</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-number" id="todayBirthdays">0</div>
-                <div class="stat-label">Today's Birthdays</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-number" id="thisMonthBirthdays">0</div>
-                <div class="stat-label">This Month</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-number" id="upcomingBirthdays">0</div>
-                <div class="stat-label">Next 7 Days</div>
-            </div>
-        </div>
-
-        <div class="main-content">
-            <!-- AI Chatbot Section -->
-            <div class="chatbot-section">
-                <h2 class="section-title">🤖 AI Birthday Assistant</h2>
-                
-                <div class="file-upload-area" id="fileUploadArea">
-                    <div class="upload-icon">📄</div>
-                    <h3>Drop files here or click to upload</h3>
-                    <p>Supports: Excel (.xlsx, .xls), CSV, PDF, Text files</p>
-                    <input type="file" id="fileInput" multiple accept=".xlsx,.xls,.csv,.pdf,.txt,.docx" style="display: none;">
-                </div>
-
-                <div class="processing-indicator" id="processingIndicator">
-                    <div class="spinner"></div>
-                    <span>Processing your file...</span>
-                </div>
-
-                <div class="chat-messages" id="chatMessages">
-                    <div class="message bot">
-                        🎉 Hi! I'm your AI Birthday Assistant! I can help you:
-                        <br>• Upload and process birthday data from Excel, CSV, PDF files
-                        <br>• Add birthdays through conversation
-                        <br>• Set up notifications and reminders
-                        <br>• Manage your birthday database
-                        <br>• Handle missing phone numbers automatically
-                        <br><br>Try uploading a file or just ask me anything!
-                    </div>
-                </div>
-
-                <div class="chat-input-area">
-                    <textarea id="chatInput" class="chat-input" placeholder="Ask me anything about birthdays or upload a file..." rows="2"></textarea>
-                    <button id="chatSendBtn" class="chat-send-btn">📨</button>
-                </div>
-            </div>
-
-            <!-- Manual Form Section -->
-            <div class="form-section">
-                <h2 class="section-title">➕ Add New Birthday</h2>
-                <form id="birthdayForm">
-                    <div class="form-grid">
-                        <div class="form-group">
-                            <label for="name">👤 Full Name</label>
-                            <input type="text" id="name" required placeholder="Enter person's name" autocomplete="name">
-                        </div>
-                        <div class="form-group">
-                            <label for="contact">📞 Contact Number</label>
-                            <input type="tel" id="contact" placeholder="Enter phone number (optional)" autocomplete="tel">
-                        </div>
-                    </div>
-                    
-                    <div class="form-group full-width">
-                        <label for="birthdate">🎂 Birth Date</label>
-                        <input type="date" id="birthdate" required>
-                    </div>
-                    
-                    <button type="submit" class="btn">🎁 Add Birthday</button>
-                </form>
-            </div>
-
-            <!-- Birthday List Section -->
-            <div class="birthday-list">
-                <h2 class="section-title">📅 Birthday List</h2>
-                <div class="filters">
-                    <div class="filter-buttons">
-                        <button class="filter-btn active" data-filter="all">🎈 All</button>
-                        <button class="filter-btn" data-filter="today">🎂 Today</button>
-                        <button class="filter-btn" data-filter="thisMonth">📅 This Month</button>
-                        <button class="filter-btn" data-filter="upcoming">⏰ Next 7 Days</button>
-                        <button class="filter-btn" data-filter="monthWise">🗓️ Month Wise</button>
-                    </div>
-                </div>
-                <div id="birthdayContainer">
-                    <div class="empty-state">
-                        <svg viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
-                        </svg>
-                        <h3>No birthdays yet!</h3>
-                        <p>Add your first birthday to get started and never miss a celebration!</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div id="notification" class="notification"></div>
-
-    <!-- Include SheetJS for Excel file processing -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
-    <!-- Include PDF.js for PDF processing -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
-
-    <script>
-        // Set up PDF.js worker
-        if (typeof pdfjsLib !== 'undefined') {
-            pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
-        }
-
-        class SmartBirthdayReminder {
-            constructor() {
-                this.birthdays = this.loadBirthdays();
-                this.currentFilter = 'all';
-                this.chatHistory = [];
-                this.monthNames = [
-                    'January', 'February', 'March', 'April', 'May', 'June',
-                    'July', 'August', 'September', 'October', 'November', 'December'
-                ];
-                this.init();
-            }
-
-            init() {
-                this.bindEvents();
-                this.renderBirthdays();
-                this.updateStats();
-                this.checkTodaysBirthdays();
-                this.startDailyCheck();
-                this.createConfetti();
-                this.initializeChatbot();
-            }
-
-            bindEvents() {
-                // Original form events
-                document.getElementById('birthdayForm').addEventListener('submit', (e) => {
-                    e.preventDefault();
-                    this.addBirthday();
-                });
-
-                document.querySelectorAll('.filter-btn').forEach(btn => {
-                    btn.addEventListener('click', (e) => {
-                        this.setFilter(e.target.dataset.filter);
-                    });
-                });
-
-                // Chatbot events
-                document.getElementById('chatSendBtn').addEventListener('click', () => {
-                    this.sendChatMessage();
-                });
-
-                document.getElementById('chatInput').addEventListener('keypress', (e) => {
-                    if (e.key === 'Enter' && !e.shiftKey) {
-                        e.preventDefault();
-                        this.sendChatMessage();
-                    }
-                });
-
-                // File upload events
-                const fileUploadArea = document.getElementById('fileUploadArea');
-                const fileInput = document.getElementById('fileInput');
-
-                fileUploadArea.addEventListener('click', () => fileInput.click());
-                fileUploadArea.addEventListener('dragover', (e) => {
-                    e.preventDefault();
-                    fileUploadArea.classList.add('dragover');
-                });
-                fileUploadArea.addEventListener('dragleave', () => {
-                    fileUploadArea.classList.remove('dragover');
-                });
-                fileUploadArea.addEventListener('drop', (e) => {
-                    e.preventDefault();
-                    fileUploadArea.classList.remove('dragover');
-                    this.handleFileUpload(e.dataTransfer.files);
-                });
-
-                fileInput.addEventListener('change', (e) => {
-                    this.handleFileUpload(e.target.files);
-                });
-            }
-
-            initializeChatbot() {
-                this.addChatMessage('system', '🤖 AI Assistant is ready! Upload a file or ask me anything.');
-            }
-
-            async sendChatMessage() {
-                const input = document.getElementById('chatInput');
-                const message = input.value.trim();
-                
-                if (!message) return;
-
-                this.addChatMessage('user', message);
-                input.value = '';
-
-                try {
-                    await this.processChatMessage(message);
-                } catch (error) {
-                    this.addChatMessage('error', `❌ Error processing message: ${error.message}`);
-                }
-            }
-
-            async processChatMessage(message) {
-                const lowerMessage = message.toLowerCase();
-                
-                // Show typing indicator
-                const typingId = this.ad
-                <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Smart Birthday Reminder - AI-Powered Never Miss a Special Day</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
-            min-height: 100vh;
-            padding: 20px;
-            position: relative;
-            overflow-x: hidden;
-        }
-
-        /* Animated Background Elements */
-        .floating-elements {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 1;
-        }
-
-        .balloon {
-            position: absolute;
-            font-size: 2rem;
-            animation: float 6s ease-in-out infinite;
-        }
-
-        .balloon:nth-child(1) { left: 10%; animation-delay: 0s; }
-        .balloon:nth-child(2) { left: 20%; animation-delay: 1s; }
-        .balloon:nth-child(3) { left: 70%; animation-delay: 2s; }
-        .balloon:nth-child(4) { left: 85%; animation-delay: 3s; }
-        .balloon:nth-child(5) { left: 50%; animation-delay: 4s; }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(100vh) rotate(0deg); }
-            50% { transform: translateY(-100px) rotate(180deg); }
-        }
-
-        .cake {
-            position: absolute;
-            font-size: 1.5rem;
-            animation: bounce 4s ease-in-out infinite;
-        }
-
-        .cake:nth-child(6) { right: 10%; top: 20%; animation-delay: 0s; }
-        .cake:nth-child(7) { right: 80%; top: 60%; animation-delay: 2s; }
-        .cake:nth-child(8) { left: 5%; top: 70%; animation-delay: 1s; }
-
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0px) scale(1); }
-            50% { transform: translateY(-20px) scale(1.1); }
-        }
-
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 25px;
-            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.2);
-            overflow: hidden;
-            backdrop-filter: blur(15px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            position: relative;
-            z-index: 10;
-        }
-
-        .header {
-            background: linear-gradient(135deg, #ff6b6b, #ee5a24, #ff9ff3);
-            color: white;
-            padding: 3rem;
+        .modal-content h2 {
+            color: #2c3e50;
+            margin-bottom: 1.5rem;
             text-align: center;
-            position: relative;
-            overflow: hidden;
+            font-size: 1.8rem;
         }
 
-        .header::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: repeating-linear-gradient(
-                45deg,
-                transparent,
-                transparent 15px,
-                rgba(255, 255, 255, 0.1) 15px,
-                rgba(255, 255, 255, 0.1) 30px
-            );
-            animation: shimmer 4s linear infinite;
-        }
-
-        @keyframes shimmer {
-            0% { transform: translateX(-100%) translateY(-100%); }
-            100% { transform: translateX(100%) translateY(100%); }
-        }
-
-        .header h1 {
-            font-size: 3rem;
-            margin-bottom: 0.5rem;
-            position: relative;
-            z-index: 1;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-        }
-
-        .header p {
-            font-size: 1.2rem;
-            opacity: 0.95;
-            position: relative;
-            z-index: 1;
-        }
-
-        .main-content {
+        .greeting-options {
             display: grid;
-            grid-template-columns: 1fr 1fr 400px;
-            gap: 2rem;
-            padding: 2rem;
-        }
-
-        .form-section, .birthday-list, .chatbot-section {
-            background: linear-gradient(135deg, #ffffff, #f8f9ff);
-            padding: 2.5rem;
-            border-radius: 20px;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
-            border: 2px solid rgba(255, 255, 255, 0.5);
-            position: relative;
-        }
-
-        .form-section::before, .birthday-list::before, .chatbot-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4);
-            border-radius: 20px 20px 0 0;
-        }
-
-        .section-title {
-            color: #2c3e50;
-            margin-bottom: 2rem;
-            font-size: 1.5rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            text-align: center;
-            justify-content: center;
-        }
-
-        /* Chatbot Styles */
-        .chatbot-section {
-            height: 600px;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .chat-messages {
-            flex: 1;
-            overflow-y: auto;
-            padding: 1rem;
-            background: #f8f9fa;
-            border-radius: 15px;
-            margin-bottom: 1rem;
-            min-height: 300px;
-        }
-
-        .message {
-            margin-bottom: 1rem;
-            padding: 1rem;
-            border-radius: 15px;
-            max-width: 80%;
-            word-wrap: break-word;
-        }
-
-        .message.user {
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            color: white;
-            margin-left: auto;
-            text-align: right;
-        }
-
-        .message.bot {
-            background: #e9ecef;
-            color: #2c3e50;
-            border: 1px solid #dee2e6;
-        }
-
-        .message.system {
-            background: linear-gradient(135deg, #00b894, #00a085);
-            color: white;
-            text-align: center;
-            border-radius: 25px;
-            font-size: 0.9rem;
-            padding: 0.5rem 1rem;
-        }
-
-        .message.error {
-            background: linear-gradient(135deg, #ff6b6b, #ee5a24);
-            color: white;
-            text-align: center;
-            border-radius: 25px;
-            font-size: 0.9rem;
-            padding: 0.5rem 1rem;
-        }
-
-        .chat-input-area {
-            display: flex;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
             gap: 1rem;
-            align-items: flex-end;
-        }
-
-        .chat-input {
-            flex: 1;
-            padding: 1rem;
-            border: 2px solid #e0e6ed;
-            border-radius: 15px;
-            resize: none;
-            font-family: inherit;
-            max-height: 100px;
-            min-height: 50px;
-        }
-
-        .chat-input:focus {
-            outline: none;
-            border-color: #667eea;
-            box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.15);
-        }
-
-        .chat-send-btn {
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            color: white;
-            border: none;
-            padding: 1rem;
-            border-radius: 15px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            min-width: 60px;
-        }
-
-        .chat-send-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
-        }
-
-        .chat-send-btn:disabled {
-            opacity: 0.6;
-            cursor: not-allowed;
-            transform: none;
-        }
-
-        .file-upload-area {
-            border: 2px dashed #667eea;
-            border-radius: 15px;
-            padding: 2rem;
-            text-align: center;
-            margin-bottom: 1rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            background: rgba(102, 126, 234, 0.05);
-        }
-
-        .file-upload-area:hover {
-            background: rgba(102, 126, 234, 0.1);
-            border-color: #5a67d8;
-        }
-
-        .file-upload-area.dragover {
-            background: rgba(102, 126, 234, 0.2);
-            border-color: #5a67d8;
-            transform: scale(1.02);
-        }
-
-        .upload-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-        }
-
-        .processing-indicator {
-            display: none;
-            align-items: center;
-            gap: 0.5rem;
-            color: #667eea;
-            font-weight: 600;
-            margin-bottom: 1rem;
-        }
-
-        .spinner {
-            width: 20px;
-            height: 20px;
-            border: 2px solid #e0e6ed;
-            border-top: 2px solid #667eea;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        /* Form and List Styles */
-        .form-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1.5rem;
             margin-bottom: 1.5rem;
         }
 
-        .form-group {
-            position: relative;
-        }
-
-        .form-group.full-width {
-            grid-column: 1 / -1;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 0.8rem;
-            color: #34495e;
-            font-weight: 600;
-            font-size: 1rem;
-        }
-
-        .form-group input, .form-group select {
-            width: 100%;
+        .greeting-option {
+            background: #e9ecef;
             padding: 1rem;
-            border: 2px solid #e0e6ed;
-            border-radius: 12px;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-            background: white;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-align: center;
+            font-size: 0.9rem;
+            border: 2px solid transparent;
         }
 
-        .form-group input:focus, .form-group select:focus {
+        .greeting-option:hover {
+            background: #d0d7e0;
+        }
+
+        .greeting-option.selected {
+            background: #667eea;
+            color: white;
+            border-color: #764ba2;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .custom-greeting-area {
+            margin-top: 1rem;
+        }
+
+        .custom-greeting-area label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #34495e;
+        }
+
+        .custom-greeting-area textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid #e0e6ed;
+            border-radius: 10px;
+            font-family: inherit;
+            font-size: 1rem;
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        .custom-greeting-area textarea:focus {
             outline: none;
             border-color: #667eea;
-            box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.15);
-            transform: translateY(-2px);
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
         }
 
-        .btn {
-            background: linear-gradient(135deg, #667eea, #764ba2);
+        .send-whatsapp-btn {
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(135deg, #25D366, #128C7E);
             color: white;
             border: none;
-            padding: 1.2rem 2.5rem;
             border-radius: 15px;
             font-size: 1.1rem;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
-            width: 100%;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-            transition: left 0.5s;
-        }
-
-        .btn:hover::before {
-            left: 100%;
-        }
-
-        .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 30px rgba(102, 126, 234, 0.4);
-        }
-
-        .birthday-list {
-            max-height: 700px;
-            overflow-y: auto;
-        }
-
-        .birthday-item {
-            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
-            margin-bottom: 1.5rem;
-            padding: 1.5rem;
-            border-radius: 15px;
-            border-left: 5px solid #667eea;
-            transition: all 0.4s ease;
-            position: relative;
-            cursor: pointer;
-        }
-
-        .birthday-item:hover {
-            transform: translateX(10px) scale(1.02);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-        }
-
-        .birthday-item.today {
-            background: linear-gradient(135deg, #ff6b6b, #ee5a24);
-            color: white;
-            border-left-color: white;
-            animation: pulse 2s infinite, glow 2s ease-in-out infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.03); }
-        }
-
-        @keyframes glow {
-            0%, 100% { box-shadow: 0 0 20px rgba(255, 107, 107, 0.5); }
-            50% { box-shadow: 0 0 40px rgba(255, 107, 107, 0.8); }
-        }
-
-        .birthday-name {
-            font-weight: 700;
-            font-size: 1.2rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .birthday-date {
-            font-size: 1rem;
-            opacity: 0.8;
-            margin-bottom: 0.3rem;
-        }
-
-        .birthday-contact {
-            font-size: 0.9rem;
-            opacity: 0.7;
-            font-weight: 500;
-        }
-
-        .birthday-age {
-            position: absolute;
-            right: 1.5rem;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(102, 126, 234, 0.15);
-            padding: 0.5rem 1rem;
-            border-radius: 25px;
-            font-size: 0.9rem;
-            font-weight: 700;
-            color: #667eea;
-        }
-
-        .birthday-item.today .birthday-age {
-            background: rgba(255, 255, 255, 0.25);
-            color: white;
-        }
-
-        .month-section {
-            margin-bottom: 2rem;
-        }
-
-        .month-header {
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            color: white;
-            padding: 1rem 1.5rem;
-            border-radius: 15px;
-            margin-bottom: 1rem;
-            text-align: center;
-            font-size: 1.2rem;
-            font-weight: 700;
+            margin-top: 1.5rem;
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 0.5rem;
         }
 
-        .month-birthdays {
-            display: grid;
-            gap: 1rem;
-        }
-
-        .stats {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1.5rem;
-            margin-bottom: 2rem;
-        }
-
-        .stat-card {
-            background: linear-gradient(135deg, #ffffff, #f8f9ff);
-            padding: 2rem;
-            border-radius: 20px;
-            text-align: center;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
-            border: 2px solid rgba(255, 255, 255, 0.5);
-            transition: all 0.3s ease;
-        }
-
-        .stat-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-        }
-
-        .stat-number {
-            font-size: 2.5rem;
-            font-weight: 800;
-            color: #667eea;
-            margin-bottom: 0.5rem;
-        }
-
-        .stat-label {
-            color: #7f8c8d;
-            font-size: 1rem;
-            font-weight: 600;
-        }
-
-        .notification {
-            position: fixed;
-            top: 30px;
-            right: 30px;
-            background: linear-gradient(135deg, #00b894, #00a085);
-            color: white;
-            padding: 1.5rem 2rem;
-            border-radius: 15px;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
-            transform: translateX(400px);
-            transition: all 0.4s ease;
-            z-index: 1000;
-            border: 2px solid rgba(255, 255, 255, 0.3);
-        }
-
-        .notification.show {
-            transform: translateX(0);
-        }
-
-        .filters {
-            background: linear-gradient(135deg, #ffffff, #f8f9ff);
-            padding: 1.5rem;
-            border-radius: 15px;
-            margin-bottom: 1.5rem;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
-        }
-
-        .filter-buttons {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-
-        .filter-btn {
-            padding: 0.8rem 1.5rem;
-            border: 2px solid #e0e6ed;
-            background: white;
-            border-radius: 25px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-size: 0.9rem;
-            font-weight: 600;
-        }
-
-        .filter-btn.active,
-        .filter-btn:hover {
-            background: #667eea;
-            color: white;
-            border-color: #667eea;
+        .send-whatsapp-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.4);
         }
 
-        .empty-state {
-            text-align: center;
-            padding: 4rem;
-            color: #7f8c8d;
-        }
-
-        .empty-state svg {
-            width: 100px;
-            height: 100px;
-            margin-bottom: 1.5rem;
-            opacity: 0.6;
-        }
-
-        .contact-btn {
-            background: linear-gradient(135deg, #00d2ff, #3a7bd5);
-            color: white;
-            border: none;
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            cursor: pointer;
-            margin-top: 0.5rem;
-            transition: all 0.3s ease;
-        }
-
-        .contact-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0, 210, 255, 0.3);
-        }
 
         @media (max-width: 1200px) {
             .main-content {
                 grid-template-columns: 1fr;
                 gap: 1rem;
                 padding: 1rem;
-            }
-            
-            .chatbot-section {
-                order: -1;
             }
         }
 
@@ -1489,9 +658,27 @@
                 grid-template-columns: 1fr;
             }
 
-            .chat-input-area {
-                flex-direction: column;
-                gap: 0.5rem;
+            .birthday-table th, .birthday-table td {
+                padding: 0.8rem;
+                font-size: 0.85rem;
+            }
+
+            .birthday-name-cell {
+                font-size: 1rem;
+            }
+
+            .action-buttons .btn-small {
+                padding: 0.5rem 0.8rem;
+                font-size: 0.8rem;
+            }
+
+            .modal-content {
+                margin: 10% auto;
+                padding: 20px;
+            }
+
+            .greeting-options {
+                grid-template-columns: 1fr; /* Stack options on small screens */
             }
         }
     </style>
@@ -1512,7 +699,7 @@
     <div class="container">
         <div class="header">
             <h1>🤖 Smart Birthday Reminder</h1>
-            <p>AI-powered birthday management! Upload Excel, CSV, PDF files and chat with AI!</p>
+            <p>Never miss a special day again!</p>
         </div>
 
         <div class="stats">
@@ -1535,40 +722,6 @@
         </div>
 
         <div class="main-content">
-            <!-- AI Chatbot Section -->
-            <div class="chatbot-section">
-                <h2 class="section-title">🤖 AI Birthday Assistant</h2>
-                
-                <div class="file-upload-area" id="fileUploadArea">
-                    <div class="upload-icon">📄</div>
-                    <h3>Drop files here or click to upload</h3>
-                    <p>Supports: Excel (.xlsx, .xls), CSV, PDF, Text files</p>
-                    <input type="file" id="fileInput" multiple accept=".xlsx,.xls,.csv,.pdf,.txt,.docx" style="display: none;">
-                </div>
-
-                <div class="processing-indicator" id="processingIndicator">
-                    <div class="spinner"></div>
-                    <span>Processing your file...</span>
-                </div>
-
-                <div class="chat-messages" id="chatMessages">
-                    <div class="message bot">
-                        🎉 Hi! I'm your AI Birthday Assistant! I can help you:
-                        <br>• Upload and process birthday data from Excel, CSV, PDF files
-                        <br>• Add birthdays through conversation
-                        <br>• Set up notifications and reminders
-                        <br>• Manage your birthday database
-                        <br>• Handle missing phone numbers automatically
-                        <br><br>Try uploading a file or just ask me anything!
-                    </div>
-                </div>
-
-                <div class="chat-input-area">
-                    <textarea id="chatInput" class="chat-input" placeholder="Ask me anything about birthdays or upload a file..." rows="2"></textarea>
-                    <button id="chatSendBtn" class="chat-send-btn">📨</button>
-                </div>
-            </div>
-
             <!-- Manual Form Section -->
             <div class="form-section">
                 <h2 class="section-title">➕ Add New Birthday</h2>
@@ -1620,26 +773,41 @@
 
     <div id="notification" class="notification"></div>
 
-    <!-- Include SheetJS for Excel file processing -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
-    <!-- Include PDF.js for PDF processing -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+    <!-- Greeting Selection Modal -->
+    <div id="greetingModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h2>Choose a Greeting for <span id="modalRecipientName"></span></h2>
+            
+            <div class="greeting-options" id="greetingOptions">
+                <div class="greeting-option" data-greeting="Happy Birthday, [Name]! Wishing you a day filled with joy and laughter! 🎂🎉">Happy Birthday!</div>
+                <div class="greeting-option" data-greeting="May your special day be as amazing as you are, [Name]! Sending lots of love! ❤️🥳">Amazing Day!</div>
+                <div class="greeting-option" data-greeting="Happy Birthday, [Name]! Hope you have a fantastic year ahead! ✨🎁">Fantastic Year!</div>
+                <div class="greeting-option" data-greeting="Wishing you the happiest of birthdays, [Name]! Enjoy every moment! 🥂🎈">Happiest Birthday!</div>
+                <div class="greeting-option" data-greeting="Happy Birthday, [Name]! Here's to another year of wonderful memories! 🌟🍰">Wonderful Memories!</div>
+            </div>
+
+            <div class="custom-greeting-area">
+                <label for="customGreeting">Or write a custom message:</label>
+                <textarea id="customGreeting" placeholder="Type your personalized birthday message here..."></textarea>
+            </div>
+
+            <button id="sendWhatsappBtn" class="send-whatsapp-btn">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp Icon" style="width: 20px; height: 20px; margin-right: 5px;"> Send via WhatsApp
+            </button>
+        </div>
+    </div>
 
     <script>
-        // Set up PDF.js worker
-        if (typeof pdfjsLib !== 'undefined') {
-            pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
-        }
-
         class SmartBirthdayReminder {
             constructor() {
                 this.birthdays = this.loadBirthdays();
                 this.currentFilter = 'all';
-                this.chatHistory = [];
                 this.monthNames = [
                     'January', 'February', 'March', 'April', 'May', 'June',
                     'July', 'August', 'September', 'October', 'November', 'December'
                 ];
+                this.selectedBirthdayForWhatsapp = null; // To store the birthday object for WhatsApp
                 this.init();
             }
 
@@ -1650,11 +818,9 @@
                 this.checkTodaysBirthdays();
                 this.startDailyCheck();
                 this.createConfetti();
-                this.initializeChatbot();
             }
 
             bindEvents() {
-                // Original form events
                 document.getElementById('birthdayForm').addEventListener('submit', (e) => {
                     e.preventDefault();
                     this.addBirthday();
@@ -1666,2314 +832,46 @@
                     });
                 });
 
-                // Chatbot events
-                document.getElementById('chatSendBtn').addEventListener('click', () => {
-                    this.sendChatMessage();
-                });
+                // Modal events
+                const modal = document.getElementById('greetingModal');
+                const closeButton = modal.querySelector('.close-button');
+                const greetingOptions = document.getElementById('greetingOptions');
+                const customGreetingTextarea = document.getElementById('customGreeting');
+                const sendWhatsappButton = document.getElementById('sendWhatsappBtn');
 
-                document.getElementById('chatInput').addEventListener('keypress', (e) => {
-                    if (e.key === 'Enter' && !e.shiftKey) {
-                        e.preventDefault();
-                        this.sendChatMessage();
+                closeButton.addEventListener('click', () => modal.style.display = 'none');
+                window.addEventListener('click', (event) => {
+                    if (event.target == modal) {
+                        modal.style.display = 'none';
                     }
                 });
 
-                // File upload events
-                const fileUploadArea = document.getElementById('fileUploadArea');
-                const fileInput = document.getElementById('fileInput');
-
-                fileUploadArea.addEventListener('click', () => fileInput.click());
-                fileUploadArea.addEventListener('dragover', (e) => {
-                    e.preventDefault();
-                    fileUploadArea.classList.add('dragover');
-                });
-                fileUploadArea.addEventListener('dragleave', () => {
-                    fileUploadArea.classList.remove('dragover');
-                });
-                fileUploadArea.addEventListener('drop', (e) => {
-                    e.preventDefault();
-                    fileUploadArea.classList.remove('dragover');
-                    this.handleFileUpload(e.dataTransfer.files);
-                });
-
-                fileInput.addEventListener('change', (e) => {
-                    this.handleFileUpload(e.target.files);
-                });
-            }
-
-            initializeChatbot() {
-                this.addChatMessage('system', '🤖 AI Assistant is ready! Upload a file or ask me anything.');
-            }
-
-            async sendChatMessage() {
-                const input = document.getElementById('chatInput');
-                const message = input.value.trim();
-                
-                if (!message) return;
-
-                this.addChatMessage('user', message);
-                input.value = '';
-
-                try {
-                    await this.processChatMessage(message);
-                } catch (error) {
-                    this.addChatMessage('error', `❌ Error processing message: ${error.message}`);
-                }
-            }
-
-            async processChatMessage(message) {
-                const lowerMessage = message.toLowerCase();
-                
-                // Show typing indicator
-                const typingId = this.addChatMessage('bot', '🤔 Thinking...');
-                
-                // Simulate processing delay
-                await new Promise(resolve => setTimeout(resolve, 1000));
-                
-                let response = '';
-
-                // Pattern matching for different types of requests
-                if (lowerMessage.includes('add') && (lowerMessage.includes('birthday') || lowerMessage.includes('person'))) {
-                    response = this.handleAddBirthdayRequest(message);
-                } else if (lowerMessage.includes('today') || lowerMessage.includes('birthday today')) {
-                    response = this.handleTodayBirthdaysRequest();
-                } else if (lowerMessage.includes('upcoming') || lowerMessage.includes('next')) {
-                    response = this.handleUpcomingBirthdaysRequest();
-                } else if (lowerMessage.includes('help') || lowerMessage.includes('what can you do')) {
-                    response = this.getHelpMessage();
-                } else if (lowerMessage.includes('delete') || lowerMessage.includes('remove')) {
-                    response = this.handleDeleteRequest(message);
-                } else if (lowerMessage.includes('search') || lowerMessage.includes('find')) {
-                    response = this.handleSearchRequest(message);
-                } else if (lowerMessage.includes('export') || lowerMessage.includes('download')) {
-                    response = this.handleExportRequest();
-                } else if (lowerMessage.includes('month') || lowerMessage.includes('monthly')) {
-                    response = this.handleMonthlyRequest(message);
-                } else {
-                    response = `🤖 I understand you're asking about: "${message}"\n\nI can help you with:\n• Adding birthdays (just tell me the name and date)\n• Checking today's birthdays\n• Finding upcoming birthdays\n• Managing your birthday list\n• Processing uploaded files (Excel, CSV, PDF)\n• Month-wise birthday listings\n\nWhat would you like me to help with?`;
-                }
-
-                // Update the typing message with the actual response
-                this.updateChatMessage(typingId, response);
-            }
-
-            handleAddBirthdayRequest(message) {
-                // Enhanced pattern matching for birthday addition
-                const patterns = [
-                    /add\s+(.+?)\s+(born|birthday|birth)\s*(?:on\s*)?(\d{1,2}[\/\-]\d{1,2}[\/\-]\d{2,4}|\d{4}[\/\-]\d{1,2}[\/\-]\d{1,2})/i,
-                    /(.+?)\s+(born|birthday|birth)\s*(?:on\s*)?(\d{1,2}[\/\-]\d{1,2}[\/\-]\d{2,4}|\d{4}[\/\-]\d{1,2}[\/\-]\d{1,2})/i
-                ];
-                
-                for (const pattern of patterns) {
-                    const match = message.match(pattern);
-                    if (match) {
-                        const name = match[1].trim().replace(/^add\s+/i, '');
-                        const dateStr = match[3];
-                        
-                        try {
-                            const date = this.parseDate(dateStr);
-                            if (date) {
-                                this.addBirthdayFromChat(name, date);
-                                return `🎉 Great! I've added ${name}'s birthday (${date.toLocaleDateString()}) to your list!`;
-                            }
-                        } catch (error) {
-                            return `❌ I had trouble parsing the date "${dateStr}". Could you provide it in MM/DD/YYYY format?`;
-                        }
-                    }
-                }
-                
-                return `🤔 I'd love to help add a birthday! Please tell me the name and date like this:\n"Add John Smith birthday 01/15/1990" or "John Smith born 03/22/1985"`;
-            }
-
-            handleTodayBirthdaysRequest() {
-                const todaysBirthdays = this.birthdays.filter(b => this.isBirthdayToday(b.birthdate));
-                
-                if (todaysBirthdays.length === 0) {
-                    return `📅 No birthdays today! You're all caught up. 🎉`;
-                }
-
-                const birthdayList = todaysBirthdays.map(b => 
-                    `🎂 ${b.name} (${this.calculateAge(b.birthdate)} years old)`
-                ).join('\n');
-
-                return `🎉 Today's Birthdays:\n\n${birthdayList}\n\nDon't forget to wish them well! 🎈`;
-            }
-
-            handleUpcomingBirthdaysRequest() {
-                const upcomingBirthdays = this.birthdays.filter(b => {
-                    const days = this.getDaysUntilBirthday(b.birthdate);
-                    return days > 0 && days <= 7;
-                });
-
-                if (upcomingBirthdays.length === 0) {
-                    return `📅 No birthdays in the next 7 days. You can relax! 😌`;
-                }
-
-                const sortedUpcoming = upcomingBirthdays.sort((a, b) => 
-                    this.getDaysUntilBirthday(a.birthdate) - this.getDaysUntilBirthday(b.birthdate)
-                );
-
-                const birthdayList = sortedUpcoming.map(b => {
-                    const days = this.getDaysUntilBirthday(b.birthdate);
-                    const dayText = days === 1 ? 'tomorrow' : `in ${days} days`;
-                    return `🎈 ${b.name} - ${dayText}`;
-                }).join('\n');
-
-                return `⏰ Upcoming Birthdays (Next 7 Days):\n\n${birthdayList}`;
-            }
-
-            handleMonthlyRequest(message) {
-                const monthMatch = message.match(/(january|february|march|april|may|june|july|august|september|october|november|december)/i);
-                
-                if (monthMatch) {
-                    const monthName = monthMatch[1].toLowerCase();
-                    const monthIndex = this.monthNames.findIndex(m => m.toLowerCase() === monthName);
-                    
-                    const monthBirthdays = this.birthdays.filter(b => {
-                        const birthDate = new Date(b.birthdate);
-                        return birthDate.getMonth() === monthIndex;
-                    });
-
-                    if (monthBirthdays.length === 0) {
-                        return `📅 No birthdays found in ${this.monthNames[monthIndex]}.`;
-                    }
-
-                    const birthdayList = monthBirthdays.map(b => 
-                        `🎂 ${b.name} - ${this.formatDate(b.birthdate)}`
-                    ).join('\n');
-
-                    return `🗓️ Birthdays in ${this.monthNames[monthIndex]}:\n\n${birthdayList}`;
-                }
-
-                return `🗓️ I can show you birthdays for any month! Try asking "Show me birthdays in January" or similar.`;
-            }
-
-            getHelpMessage() {
-                return `🤖 **AI Birthday Assistant Help**\n\n**What I can do:**\n• 📄 Process Excel/CSV/PDF files with birthday data\n• ➕ Add birthdays through conversation\n• 📅 Check today's and upcoming birthdays\n• 🔍 Search for specific people\n• 📊 Export your birthday data\n• 🗓️ Show month-wise birthday listings\n• 🗑️ Help manage entries\n\n**Example commands:**\n• "Add John Smith birthday 01/15/1990"\n• "Who has birthdays today?"\n• "Show upcoming birthdays"\n• "Find Sarah"\n• "Show birthdays in March"\n• "Export my data"\n\n**File Upload:**\nDrag and drop Excel, CSV, or PDF files. I'll automatically extract birthday information and handle missing phone numbers.\n\nJust ask me anything! 😊`;
-            }
-
-            handleDeleteRequest(message) {
-                const nameMatch = message.match(/delete|remove\s+(.+)/i);
-                if (nameMatch) {
-                    const searchName = nameMatch[1].trim().toLowerCase();
-                    const foundBirthday = this.birthdays.find(b => 
-                        b.name.toLowerCase().includes(searchName)
-                    );
-                    
-                    if (foundBirthday) {
-                        return `🗑️ Found ${foundBirthday.name}. To delete, please use the birthday list interface for safety. I can help you search but not delete directly.`;
-                    } else {
-                        return `❌ I couldn't find anyone with a name containing "${searchName}". Could you check the spelling?`;
-                    }
-                }
-                return `🗑️ To delete a birthday, please specify the name like "delete John Smith" or use the birthday list interface.`;
-            }
-
-            handleSearchRequest(message) {
-                const searchMatch = message.match(/search|find\s+(.+)/i);
-                if (searchMatch) {
-                    const searchTerm = searchMatch[1].trim().toLowerCase();
-                    const results = this.birthdays.filter(b => 
-                        b.name.toLowerCase().includes(searchTerm) ||
-                        (b.contact && b.contact.toLowerCase().includes(searchTerm))
-                    );
-                    
-                    if (results.length === 0) {
-                        return `🔍 No results found for "${searchTerm}". Try a different search term.`;
-                    }
-                    
-                    const resultList = results.map(b => 
-                        `👤 ${b.name} - ${this.formatDate(b.birthdate)} (${this.calculateAge(b.birthdate)} years)`
-                    ).join('\n');
-                    
-                    return `🔍 Search Results for "${searchTerm}":\n\n${resultList}`;
-                }
-                return `🔍 Please specify what to search for, like "find John" or "search Smith".`;
-            }
-
-            handleExportRequest() {
-                this.exportBirthdays();
-                return `📊 Great! I've prepared your birthday data for download. Check your downloads folder for "birthdays_export.csv"!`;
-            }
-
-            async handleFileUpload(files) {
-                if (files.length === 0) return;
-
-                const processingIndicator = document.getElementById('processingIndicator');
-                processingIndicator.style.display = 'flex';
-
-                this.addChatMessage('system', `📤 Processing ${files.length} file(s)...`);
-
-                let totalProcessed = 0;
-                let totalAdded = 0;
-
-                for (const file of files) {
-                    try {
-                        const result = await this.processFile(file);
-                        totalProcessed += result.processed;
-                        totalAdded += result.added;
-                        
-                        this.addChatMessage('bot', `✅ Processed "${file.name}": Found ${result.processed} records, added ${result.added} new birthdays.`);
-                    } catch (error) {
-                        this.addChatMessage('error', `❌ Error processing "${file.name}": ${error.message}`);
-                    }
-                }
-
-                processingIndicator.style.display = 'none';
-                
-                if (totalAdded > 0) {
-                    this.renderBirthdays();
-                    this.updateStats();
-                    this.showNotification(`🎉 Successfully added ${totalAdded} birthdays from your files!`);
-                }
-
-                this.addChatMessage('bot', `🎉 File processing complete! Added ${totalAdded} new birthdays out of ${totalProcessed} total records processed.`);
-            }
-
-            async processFile(file) {
-                return new Promise((resolve, reject) => {
-                    const fileExtension = file.name.split('.').pop().toLowerCase();
-                    
-                    if (fileExtension === 'pdf') {
-                        this.processPDFFile(file).then(resolve).catch(reject);
-                    } else if (fileExtension === 'csv') {
-                        this.processCSVFile(file).then(resolve).catch(reject);
-                    } else if (['xlsx', 'xls'].includes(fileExtension)) {
-                        this.processExcelFile(file).then(resolve).catch(reject);
-                    } else if (['txt', 'docx'].includes(fileExtension)) {
-                        this.processTextFile(file).then(resolve).catch(reject);
-                    } else {
-                        reject(new Error('Unsupported file format. Please use CSV, Excel, PDF, or text files.'));
-                    }
-                });
-            }
-
-            async processPDFFile(file) {
-                try {
-                    const arrayBuffer = await file.arrayBuffer();
-                    const pdf = await pdfjsLib.getDocument(arrayBuffer).promise;
-                    let fullText = '';
-
-                    for (let i = 1; i <= pdf.numPages; i++) {
-                        const page = await pdf.getPage(i);
-                        const textContent = await page.getTextContent();
-                        const pageText = textContent.items.map(item => item.str).join(' ');
-                        fullText += pageText + '\n';
-                    }
-
-                    return this.extractBirthdaysFromText(fullText);
-                } catch (error) {
-                    throw new Error(`Failed to process PDF: ${error.message}`);
-                }
-            }
-
-            async processCSVFile(file) {
-                return new Promise((resolve, reject) => {
-                    const reader = new FileReader();
-                    
-                    reader.onload = (e) => {
-                        try {
-                            const data = e.target.result;
-                            const records = this.parseCSV(data);
-                            const result = this.processBirthdayRecords(records);
-                            resolve(result);
-                        } catch (error) {
-                            reject(error);
-                        }
-                    };
-
-                    reader.onerror = () => reject(new Error('Failed to read CSV file'));
-                    reader.readAsText(file);
-                });
-            }
-
-            async processExcelFile(file) {
-                return new Promise((resolve, reject) => {
-                    const reader = new FileReader();
-                    
-                    reader.onload = (e) => {
-                        try {
-                            const data = e.target.result;
-                            const records = this.parseExcel(data);
-                            const result = this.processBirthdayRecords(records);
-                            resolve(result);
-                        } catch (error) {
-                            reject(error);
-                        }
-                    };
-
-                    reader.onerror = () => reject(new Error('Failed to read Excel file'));
-                    reader.readAsArrayBuffer(file);
-                });
-            }
-
-            async processTextFile(file) {
-                return new Promise((resolve, reject) => {
-                    const reader = new FileReader();
-                    
-                    reader.onload = (e) => {
-                        try {
-                            const data = e.target.result;
-                            const result = this.extractBirthdaysFromText(data);
-                            resolve(result);
-                        } catch (error) {
-                            reject(error);
-                        }
-                    };
-
-                    reader.onerror = () => reject(new Error('Failed to read text file'));
-                    reader.readAsText(file);
-                });
-            }
-
-            extractBirthdaysFromText(text) {
-                const lines = text.split('\n');
-                let processed = 0;
-                let added = 0;
-
-                // Enhanced regex patterns for birthday extraction
-                const patterns = [
-                    /([A-Za-z\s]+)[\s\-\:]+(\d{1,2}[\/\-]\d{1,2}[\/\-]\d{2,4})/g,
-                    /([A-Za-z\s]+)[\s]*born[\s]*(\d{1,2}[\/\-]\d{1,2}[\/\-]\d{2,4})/gi,
-                    /([A-Za-z\s]+)[\s]*birthday[\s]*(\d{1,2}[\/\-]\d{1,2}[\/\-]\d{2,4})/gi,
-                    /([A-Za-z\s]+)[\s]*DOB[\s]*(\d{1,2}[\/\-]\d{1,2}[\/\-]\d{2,4})/gi,
-                ];
-
-                for (const line of lines) {
-                    for (const pattern of patterns) {
-                        let match;
-                        while ((match = pattern.exec(line)) !== null) {
-                            processed++;
-                            const name = match[1].trim();
-                            const dateStr = match[2];
-                            
-                            if (name.length > 2) {
-                                const date = this.parseDate(dateStr);
-                                if (date && this.isValidName(name)) {
-                                    const existing = this.birthdays.find(b => 
-                                        b.name.toLowerCase() === name.toLowerCase()
-                                    );
-
-                                    if (!existing) {
-                                        this.birthdays.push({
-                                            id: Date.now() + Math.random(),
-                                            name,
-                                            birthdate: date.toISOString().split('T')[0],
-                                            contact: 'Not available',
-                                            dateAdded: new Date().toISOString()
-                                        });
-                                        added++;
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-
-                this.saveBirthdays();
-                return { processed, added };
-            }
-
-            isValidName(name) {
-                // Basic validation for names
-                const cleanName = name.trim();
-                return cleanName.length >= 2 && 
-                       cleanName.length <= 50 && 
-                       /^[A-Za-z\s\-\.]+$/.test(cleanName) &&
-                       !/(date|birth|born|dob|phone|contact|email)/i.test(cleanName);
-            }
-
-            parseCSV(data) {
-                const lines = data.split('\n').filter(line => line.trim());
-                if (lines.length < 2) throw new Error('CSV file appears to be empty or has no data rows.');
-
-                const headers = this.parseCSVLine(lines[0]).map(h => h.trim().toLowerCase());
-                const records = [];
-
-                for (let i = 1; i < lines.length; i++) {
-                    const values = this.parseCSVLine(lines[i]);
-                    if (values.length === 0) continue;
-                    
-                    const record = {};
-                    headers.forEach((header, index) => {
-                        record[header] = values[index] ? values[index].trim() : '';
-                    });
-                    
-                    records.push(record);
-                }
-
-                return records;
-            }
-
-            parseCSVLine(line) {
-                const result = [];
-                let current = '';
-                let inQuotes = false;
-                
-                for (let i = 0; i < line.length; i++) {
-                    const char = line[i];
-                    
-                    if (char === '"') {
-                        inQuotes = !inQuotes;
-                    } else if (char === ',' && !inQuotes) {
-                        result.push(current);
-                        current = '';
-                    } else {
-                        current += char;
-                    }
-                }
-                
-                result.push(current);
-                return result.map(item => item.replace(/^"|"$/g, ''));
-            }
-
-            parseExcel(data) {
-                try {
-                    const workbook = XLSX.read(data, { type: 'array', cellDates: true, dateNF: 'mm/dd/yyyy' });
-                    const sheetName = workbook.SheetNames[0];
-                    const worksheet = workbook.Sheets[sheetName];
-                    const jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, raw: false });
-
-                    if (jsonData.length < 2) throw new Error('Excel file appears to be empty or has no data rows.');
-
-                    const headers = jsonData[0].map(h => String(h || '').trim().toLowerCase());
-                    const records = [];
-
-                    for (let i = 1; i < jsonData.length; i++) {
-                        const row = jsonData[i];
-                        if (!row || row.length === 0) continue;
-
-                        const record = {};
-                        headers.forEach((header, index) => {
-                            record[header] = row[index] ? String(row[index]).trim() : '';
+                greetingOptions.addEventListener('click', (e) => {
+                    const selectedOption = e.target.closest('.greeting-option');
+                    if (selectedOption) {
+                        // Remove selected class from all options
+                        greetingOptions.querySelectorAll('.greeting-option').forEach(opt => {
+                            opt.classList.remove('selected');
                         });
-                        
-                        records.push(record);
+                        // Add selected class to the clicked option
+                        selectedOption.classList.add('selected');
+                        // Clear custom message if a preset is selected
+                        customGreetingTextarea.value = '';
                     }
-
-                    return records;
-                } catch (error) {
-                    throw new Error(`Excel parsing failed: ${error.message}`);
-                }
-            }
-
-            processBirthdayRecords(records) {
-                let processed = 0;
-                let added = 0;
-
-                for (const record of records) {
-                    processed++;
-                    
-                    const name = this.extractName(record);
-                    const birthdate = this.extractBirthdate(record);
-                    const contact = this.extractContact(record) || 'Not available';
-
-                    if (name && birthdate) {
-                        // Check if birthday already exists
-                        const existing = this.birthdays.find(b => 
-                            b.name.toLowerCase() === name.toLowerCase() && 
-                            b.birthdate === birthdate
-                        );
-
-                        if (!existing) {
-                            this.birthdays.push({
-                                id: Date.now() + Math.random(),
-                                name,
-                                birthdate,
-                                contact,
-                                dateAdded: new Date().toISOString()
-                            });
-                            added++;
-                        }
-                    }
-                }
-
-                this.saveBirthdays();
-                return { processed, added };
-            }
-
-            extractName(record) {
-                // Enhanced name extraction with more field variations
-                const nameFields = [
-                    'name', 'full name', 'fullname', 'full_name',
-                    'first name', 'firstname', 'first_name',
-                    'last name', 'lastname', 'last_name',
-                    'contact name', 'contact_name', 'person',
-                    'employee name', 'student name', 'member name'
-                ];
-                
-                for (const field of nameFields) {
-                    if (record[field] && record[field].trim()) {
-                        return record[field].trim();
-                    }
-                }
-
-                // Try combining first and last name
-                const firstName = record['first name'] || record['firstname'] || record['first_name'] || '';
-                const lastName = record['last name'] || record['lastname'] || record['last_name'] || '';
-                
-                if (firstName && lastName) {
-                    return `${firstName} ${lastName}`.trim();
-                }
-
-                return firstName || lastName || null;
-            }
-
-            extractBirthdate(record) {
-                // Enhanced birthdate extraction
-                const dateFields = [
-                    'birthday', 'birthdate', 'birth date', 'birth_date',
-                    'dob', 'date of birth', 'date_of_birth',
-                    'born', 'born date', 'born_date',
-                    'birth day', 'birth_day'
-                ];
-                
-                for (const field of dateFields) {
-                    if (record[field] && record[field].trim()) {
-                        const date = this.parseDate(record[field]);
-                        if (date) {
-                            return date.toISOString().split('T')[0];
-                        }
-                    }
-                }
-
-                return null;
-            }
-
-            extractContact(record) {
-                // Enhanced contact extraction
-                const contactFields = [
-                    'phone', 'telephone', 'contact', 'mobile', 'cell', 'number',
-                    'phone number', 'phone_number', 'contact number', 'contact_number',
-                    'mobile number', 'mobile_number', 'cell phone', 'cell_phone'
-                ];
-                
-                for (const field of contactFields) {
-                    if (record[field] && record[field].trim()) {
-                        return record[field].trim();
-                    }
-                }
-
-                return null;
-            }
-
-            parseDate(dateStr) {
-                if (!dateStr) return null;
-
-                // Clean the date string
-                dateStr = String(dateStr).trim();
-
-                // Handle Excel date numbers
-                if (!isNaN(dateStr) && dateStr > 25000) {
-                    try {
-                        // Excel date conversion (days since 1900-01-01)
-                        const excelDate = new Date((dateStr - 25569) * 86400 * 1000);
-                        if (!isNaN(excelDate.getTime())) {
-                            return excelDate;
-                        }
-                    } catch (e) {
-                        // Continue with other parsing methods
-                    }
-                }
-
-                // Try multiple date formats
-                const formats = [
-                    /(\d{1,2})[\/\-](\d{1,2})[\/\-](\d{4})/,        // MM/DD/YYYY or DD/MM/YYYY
-                    /(\d{4})[\/\-](\d{1,2})[\/\-](\d{1,2})/,        // YYYY/MM/DD
-                    /(\d{1,2})[\/\-](\d{1,2})[\/\-](\d{2})/,        // MM/DD/YY
-                    /(\d{1,2})\s+(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\s+(\d{4})/i, // DD Mon YYYY
-                    /(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\s+(\d{1,2}),?\s+(\d{4})/i // Mon DD, YYYY
-                ];
-
-                for (const format of formats) {
-                    const match = dateStr.match(format);
-                    if (match) {
-                        let year, month, day;
-                        
-                        if (format.source.includes('Jan|Feb')) {
-                            // Handle month name formats
-                            const monthNames = ['jan', 'feb', 'mar', 'apr', 'may', 'jun',
-                                              'jul', 'aug', 'sep', 'oct', 'nov', 'dec'];
-                            if (match[3]) {
-                                // DD Mon YYYY
-                                day = parseInt(match[1]);
-                                month = monthNames.indexOf(match[2].toLowerCase());
-                                year = parseInt(match[3]);
-                            } else {
-                                // Mon DD, YYYY
-                                month = monthNames.indexOf(match[1].toLowerCase());
-                                day = parseInt(match[2]);
-                                year = parseInt(match[3]);
-                            }
-                        } else if (match[1].length === 4) {
-                            // YYYY/MM/DD format
-                            year = parseInt(match[1]);
-                            month = parseInt(match[2]) - 1;
-                            day = parseInt(match[3]);
-                        } else if (match[3] && match[3].length === 4) {
-                            // MM/DD/YYYY format
-                            month = parseInt(match[1]) - 1;
-                            day = parseInt(match[2]);
-                            year = parseInt(match[3]);
-                        } else {
-                            // MM/DD/YY format
-                            month = parseInt(match[1]) - 1;
-                            day = parseInt(match[2]);
-                            year = parseInt(match[3]);
-                            if (year < 50) year += 2000;
-                            else if (year < 100) year += 1900;
-                        }
-
-                        const date = new Date(year, month, day);
-                        if (!isNaN(date.getTime()) && date.getFullYear() >= 1900 && date.getFullYear() <= 2100) {
-                            return date;
-                        }
-                    }
-                }
-
-                // Try native Date parsing as fallback
-                try {
-                    const date = new Date(dateStr);
-                    if (!isNaN(date.getTime()) && date.getFullYear() >= 1900 && date.getFullYear() <= 2100) {
-                        return date;
-                    }
-                } catch (e) {
-                    // Ignore parsing errors
-                }
-
-                return null;
-            }
-
-            addChatMessage(type, message) {
-                const chatMessages = document.getElementById('chatMessages');
-                const messageId = 'msg-' + Date.now() + '-' + Math.random();
-                
-                const messageDiv = document.createElement('div');
-                messageDiv.className = `message ${type}`;
-                messageDiv.id = messageId;
-                messageDiv.innerHTML = message.replace(/\n/g, '<br>');
-                
-                chatMessages.appendChild(messageDiv);
-                chatMessages.scrollTop = chatMessages.scrollHeight;
-                
-                return messageId;
-            }
-
-            updateChatMessage(messageId, newContent) {
-                const messageElement = document.getElementById(messageId);
-                if (messageElement) {
-                    messageElement.innerHTML = newContent.replace(/\n/g, '<br>');
-                }
-            }
-
-            addBirthdayFromChat(name, date) {
-                const birthday = {
-                    id: Date.now() + Math.random(),
-                    name,
-                    birthdate: date.toISOString().split('T')[0],
-                    contact: 'Added via chat',
-                    dateAdded: new Date().toISOString()
-                };
-
-                this.birthdays.push(birthday);
-                this.saveBirthdays();
-                this.renderBirthdays();
-                this.updateStats();
-            }
-
-            exportBirthdays() {
-                if (this.birthdays.length === 0) {
-                    this.showNotification('❌ No birthdays to export!');
-                    return;
-                }
-
-                const csvContent = [
-                    ['Name', 'Birth Date', 'Age', 'Contact', 'Days Until Birthday'].join(','),
-                    ...this.birthdays.map(b => [
-                        `"${b.name}"`,
-                        b.birthdate,
-                        this.calculateAge(b.birthdate),
-                        `"${b.contact}"`,
-                        this.getDaysUntilBirthday(b.birthdate)
-                    ].join(','))
-                ].join('\n');
-
-                const blob = new Blob([csvContent], { type: 'text/csv' });
-                const url = window.URL.createObjectURL(blob);
-                const a = document.createElement('a');
-                a.href = url;
-                a.download = 'birthdays_export.csv';
-                document.body.appendChild(a);
-                a.click();
-                document.body.removeChild(a);
-                window.URL.revokeObjectURL(url);
-            }
-
-            // Original methods (keeping existing functionality)
-            addBirthday() {
-                const name = document.getElementById('name').value.trim();
-                const birthdate = document.getElementById('birthdate').value;
-                const contact = document.getElementById('contact').value.trim();
-
-                if (!name || !birthdate) {
-                    this.showNotification('❌ Please fill in name and birth date!', 3000);
-                    return;
-                }
-
-                const birthday = {
-                    id: Date.now(),
-                    name,
-                    birthdate,
-                    contact: contact || 'Not available',
-                    dateAdded: new Date().toISOString()
-                    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Smart Birthday Reminder - AI-Powered Never Miss a Special Day</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
-            min-height: 100vh;
-            padding: 20px;
-            position: relative;
-            overflow-x: hidden;
-        }
-
-        /* Animated Background Elements */
-        .floating-elements {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 1;
-        }
-
-        .balloon {
-            position: absolute;
-            font-size: 2rem;
-            animation: float 6s ease-in-out infinite;
-        }
-
-        .balloon:nth-child(1) { left: 10%; animation-delay: 0s; }
-        .balloon:nth-child(2) { left: 20%; animation-delay: 1s; }
-        .balloon:nth-child(3) { left: 70%; animation-delay: 2s; }
-        .balloon:nth-child(4) { left: 85%; animation-delay: 3s; }
-        .balloon:nth-child(5) { left: 50%; animation-delay: 4s; }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(100vh) rotate(0deg); }
-            50% { transform: translateY(-100px) rotate(180deg); }
-        }
-
-        .cake {
-            position: absolute;
-            font-size: 1.5rem;
-            animation: bounce 4s ease-in-out infinite;
-        }
-
-        .cake:nth-child(6) { right: 10%; top: 20%; animation-delay: 0s; }
-        .cake:nth-child(7) { right: 80%; top: 60%; animation-delay: 2s; }
-        .cake:nth-child(8) { left: 5%; top: 70%; animation-delay: 1s; }
-
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0px) scale(1); }
-            50% { transform: translateY(-20px) scale(1.1); }
-        }
-
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 25px;
-            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.2);
-            overflow: hidden;
-            backdrop-filter: blur(15px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            position: relative;
-            z-index: 10;
-        }
-
-        .header {
-            background: linear-gradient(135deg, #ff6b6b, #ee5a24, #ff9ff3);
-            color: white;
-            padding: 3rem;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .header::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: repeating-linear-gradient(
-                45deg,
-                transparent,
-                transparent 15px,
-                rgba(255, 255, 255, 0.1) 15px,
-                rgba(255, 255, 255, 0.1) 30px
-            );
-            animation: shimmer 4s linear infinite;
-        }
-
-        @keyframes shimmer {
-            0% { transform: translateX(-100%) translateY(-100%); }
-            100% { transform: translateX(100%) translateY(100%); }
-        }
-
-        .header h1 {
-            font-size: 3rem;
-            margin-bottom: 0.5rem;
-            position: relative;
-            z-index: 1;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-        }
-
-        .header p {
-            font-size: 1.2rem;
-            opacity: 0.95;
-            position: relative;
-            z-index: 1;
-        }
-
-        .main-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr 400px;
-            gap: 2rem;
-            padding: 2rem;
-        }
-
-        .form-section, .birthday-list, .chatbot-section {
-            background: linear-gradient(135deg, #ffffff, #f8f9ff);
-            padding: 2.5rem;
-            border-radius: 20px;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
-            border: 2px solid rgba(255, 255, 255, 0.5);
-            position: relative;
-        }
-
-        .form-section::before, .birthday-list::before, .chatbot-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4);
-            border-radius: 20px 20px 0 0;
-        }
-
-        .section-title {
-            color: #2c3e50;
-            margin-bottom: 2rem;
-            font-size: 1.5rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            text-align: center;
-            justify-content: center;
-        }
-
-        /* Chatbot Styles */
-        .chatbot-section {
-            height: 600px;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .chat-messages {
-            flex: 1;
-            overflow-y: auto;
-            padding: 1rem;
-            background: #f8f9fa;
-            border-radius: 15px;
-            margin-bottom: 1rem;
-            min-height: 300px;
-        }
-
-        .message {
-            margin-bottom: 1rem;
-            padding: 1rem;
-            border-radius: 15px;
-            max-width: 80%;
-            word-wrap: break-word;
-        }
-
-        .message.user {
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            color: white;
-            margin-left: auto;
-            text-align: right;
-        }
-
-        .message.bot {
-            background: #e9ecef;
-            color: #2c3e50;
-            border: 1px solid #dee2e6;
-        }
-
-        .message.system {
-            background: linear-gradient(135deg, #00b894, #00a085);
-            color: white;
-            text-align: center;
-            border-radius: 25px;
-            font-size: 0.9rem;
-            padding: 0.5rem 1rem;
-        }
-
-        .message.error {
-            background: linear-gradient(135deg, #ff6b6b, #ee5a24);
-            color: white;
-            text-align: center;
-            border-radius: 25px;
-            font-size: 0.9rem;
-            padding: 0.5rem 1rem;
-        }
-
-        .chat-input-area {
-            display: flex;
-            gap: 1rem;
-            align-items: flex-end;
-        }
-
-        .chat-input {
-            flex: 1;
-            padding: 1rem;
-            border: 2px solid #e0e6ed;
-            border-radius: 15px;
-            resize: none;
-            font-family: inherit;
-            max-height: 100px;
-            min-height: 50px;
-        }
-
-        .chat-input:focus {
-            outline: none;
-            border-color: #667eea;
-            box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.15);
-        }
-
-        .chat-send-btn {
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            color: white;
-            border: none;
-            padding: 1rem;
-            border-radius: 15px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            min-width: 60px;
-        }
-
-        .chat-send-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
-        }
-
-        .chat-send-btn:disabled {
-            opacity: 0.6;
-            cursor: not-allowed;
-            transform: none;
-        }
-
-        .file-upload-area {
-            border: 2px dashed #667eea;
-            border-radius: 15px;
-            padding: 2rem;
-            text-align: center;
-            margin-bottom: 1rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            background: rgba(102, 126, 234, 0.05);
-        }
-
-        .file-upload-area:hover {
-            background: rgba(102, 126, 234, 0.1);
-            border-color: #5a67d8;
-        }
-
-        .file-upload-area.dragover {
-            background: rgba(102, 126, 234, 0.2);
-            border-color: #5a67d8;
-            transform: scale(1.02);
-        }
-
-        .upload-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-        }
-
-        .processing-indicator {
-            display: none;
-            align-items: center;
-            gap: 0.5rem;
-            color: #667eea;
-            font-weight: 600;
-            margin-bottom: 1rem;
-        }
-
-        .spinner {
-            width: 20px;
-            height: 20px;
-            border: 2px solid #e0e6ed;
-            border-top: 2px solid #667eea;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        /* Form and List Styles */
-        .form-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .form-group {
-            position: relative;
-        }
-
-        .form-group.full-width {
-            grid-column: 1 / -1;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 0.8rem;
-            color: #34495e;
-            font-weight: 600;
-            font-size: 1rem;
-        }
-
-        .form-group input, .form-group select {
-            width: 100%;
-            padding: 1rem;
-            border: 2px solid #e0e6ed;
-            border-radius: 12px;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-            background: white;
-        }
-
-        .form-group input:focus, .form-group select:focus {
-            outline: none;
-            border-color: #667eea;
-            box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.15);
-            transform: translateY(-2px);
-        }
-
-        .btn {
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            color: white;
-            border: none;
-            padding: 1.2rem 2.5rem;
-            border-radius: 15px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            width: 100%;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-            transition: left 0.5s;
-        }
-
-        .btn:hover::before {
-            left: 100%;
-        }
-
-        .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 30px rgba(102, 126, 234, 0.4);
-        }
-
-        .birthday-list {
-            max-height: 700px;
-            overflow-y: auto;
-        }
-
-        .birthday-item {
-            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
-            margin-bottom: 1.5rem;
-            padding: 1.5rem;
-            border-radius: 15px;
-            border-left: 5px solid #667eea;
-            transition: all 0.4s ease;
-            position: relative;
-            cursor: pointer;
-        }
-
-        .birthday-item:hover {
-            transform: translateX(10px) scale(1.02);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-        }
-
-        .birthday-item.today {
-            background: linear-gradient(135deg, #ff6b6b, #ee5a24);
-            color: white;
-            border-left-color: white;
-            animation: pulse 2s infinite, glow 2s ease-in-out infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.03); }
-        }
-
-        @keyframes glow {
-            0%, 100% { box-shadow: 0 0 20px rgba(255, 107, 107, 0.5); }
-            50% { box-shadow: 0 0 40px rgba(255, 107, 107, 0.8); }
-        }
-
-        .birthday-name {
-            font-weight: 700;
-            font-size: 1.2rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .birthday-date {
-            font-size: 1rem;
-            opacity: 0.8;
-            margin-bottom: 0.3rem;
-        }
-
-        .birthday-contact {
-            font-size: 0.9rem;
-            opacity: 0.7;
-            font-weight: 500;
-        }
-
-        .birthday-age {
-            position: absolute;
-            right: 1.5rem;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(102, 126, 234, 0.15);
-            padding: 0.5rem 1rem;
-            border-radius: 25px;
-            font-size: 0.9rem;
-            font-weight: 700;
-            color: #667eea;
-        }
-
-        .birthday-item.today .birthday-age {
-            background: rgba(255, 255, 255, 0.25);
-            color: white;
-        }
-
-        .month-section {
-            margin-bottom: 2rem;
-        }
-
-        .month-header {
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            color: white;
-            padding: 1rem 1.5rem;
-            border-radius: 15px;
-            margin-bottom: 1rem;
-            text-align: center;
-            font-size: 1.2rem;
-            font-weight: 700;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-        }
-
-        .month-birthdays {
-            display: grid;
-            gap: 1rem;
-        }
-
-        .stats {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1.5rem;
-            margin-bottom: 2rem;
-        }
-
-        .stat-card {
-            background: linear-gradient(135deg, #ffffff, #f8f9ff);
-            padding: 2rem;
-            border-radius: 20px;
-            text-align: center;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
-            border: 2px solid rgba(255, 255, 255, 0.5);
-            transition: all 0.3s ease;
-        }
-
-        .stat-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-        }
-
-        .stat-number {
-            font-size: 2.5rem;
-            font-weight: 800;
-            color: #667eea;
-            margin-bottom: 0.5rem;
-        }
-
-        .stat-label {
-            color: #7f8c8d;
-            font-size: 1rem;
-            font-weight: 600;
-        }
-
-        .notification {
-            position: fixed;
-            top: 30px;
-            right: 30px;
-            background: linear-gradient(135deg, #00b894, #00a085);
-            color: white;
-            padding: 1.5rem 2rem;
-            border-radius: 15px;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
-            transform: translateX(400px);
-            transition: all 0.4s ease;
-            z-index: 1000;
-            border: 2px solid rgba(255, 255, 255, 0.3);
-        }
-
-        .notification.show {
-            transform: translateX(0);
-        }
-
-        .filters {
-            background: linear-gradient(135deg, #ffffff, #f8f9ff);
-            padding: 1.5rem;
-            border-radius: 15px;
-            margin-bottom: 1.5rem;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
-        }
-
-        .filter-buttons {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-
-        .filter-btn {
-            padding: 0.8rem 1.5rem;
-            border: 2px solid #e0e6ed;
-            background: white;
-            border-radius: 25px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-size: 0.9rem;
-            font-weight: 600;
-        }
-
-        .filter-btn.active,
-        .filter-btn:hover {
-            background: #667eea;
-            color: white;
-            border-color: #667eea;
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
-        }
-
-        .empty-state {
-            text-align: center;
-            padding: 4rem;
-            color: #7f8c8d;
-        }
-
-        .empty-state svg {
-            width: 100px;
-            height: 100px;
-            margin-bottom: 1.5rem;
-            opacity: 0.6;
-        }
-
-        .contact-btn {
-            background: linear-gradient(135deg, #00d2ff, #3a7bd5);
-            color: white;
-            border: none;
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            cursor: pointer;
-            margin-top: 0.5rem;
-            transition: all 0.3s ease;
-        }
-
-        .contact-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0, 210, 255, 0.3);
-        }
-
-        @media (max-width: 1200px) {
-            .main-content {
-                grid-template-columns: 1fr;
-                gap: 1rem;
-                padding: 1rem;
-            }
-            
-            .chatbot-section {
-                order: -1;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .header h1 {
-                font-size: 2.5rem;
-            }
-            
-            .form-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .chat-input-area {
-                flex-direction: column;
-                gap: 0.5rem;
-            }
-        }
-    </style>
-</head>
-<body>
-    <!-- Animated Background Elements -->
-    <div class="floating-elements">
-        <div class="balloon">🎈</div>
-        <div class="balloon">🎈</div>
-        <div class="balloon">🎈</div>
-        <div class="balloon">🎈</div>
-        <div class="balloon">🎈</div>
-        <div class="cake">🎂</div>
-        <div class="cake">🍰</div>
-        <div class="cake">🧁</div>
-    </div>
-
-    <div class="container">
-        <div class="header">
-            <h1>🤖 Smart Birthday Reminder</h1>
-            <p>AI-powered birthday management! Upload Excel, CSV, PDF files and chat with AI!</p>
-        </div>
-
-        <div class="stats">
-            <div class="stat-card">
-                <div class="stat-number" id="totalBirthdays">0</div>
-                <div class="stat-label">Total Birthdays</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-number" id="todayBirthdays">0</div>
-                <div class="stat-label">Today's Birthdays</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-number" id="thisMonthBirthdays">0</div>
-                <div class="stat-label">This Month</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-number" id="upcomingBirthdays">0</div>
-                <div class="stat-label">Next 7 Days</div>
-            </div>
-        </div>
-
-        <div class="main-content">
-            <!-- AI Chatbot Section -->
-            <div class="chatbot-section">
-                <h2 class="section-title">🤖 AI Birthday Assistant</h2>
-                
-                <div class="file-upload-area" id="fileUploadArea">
-                    <div class="upload-icon">📄</div>
-                    <h3>Drop files here or click to upload</h3>
-                    <p>Supports: Excel (.xlsx, .xls), CSV, PDF, Text files</p>
-                    <input type="file" id="fileInput" multiple accept=".xlsx,.xls,.csv,.pdf,.txt,.docx" style="display: none;">
-                </div>
-
-                <div class="processing-indicator" id="processingIndicator">
-                    <div class="spinner"></div>
-                    <span>Processing your file...</span>
-                </div>
-
-                <div class="chat-messages" id="chatMessages">
-                    <div class="message bot">
-                        🎉 Hi! I'm your AI Birthday Assistant! I can help you:
-                        <br>• Upload and process birthday data from Excel, CSV, PDF files
-                        <br>• Add birthdays through conversation
-                        <br>• Set up notifications and reminders
-                        <br>• Manage your birthday database
-                        <br>• Handle missing phone numbers automatically
-                        <br><br>Try uploading a file or just ask me anything!
-                    </div>
-                </div>
-
-                <div class="chat-input-area">
-                    <textarea id="chatInput" class="chat-input" placeholder="Ask me anything about birthdays or upload a file..." rows="2"></textarea>
-                    <button id="chatSendBtn" class="chat-send-btn">📨</button>
-                </div>
-            </div>
-
-            <!-- Manual Form Section -->
-            <div class="form-section">
-                <h2 class="section-title">➕ Add New Birthday</h2>
-                <form id="birthdayForm">
-                    <div class="form-grid">
-                        <div class="form-group">
-                            <label for="name">👤 Full Name</label>
-                            <input type="text" id="name" required placeholder="Enter person's name" autocomplete="name">
-                        </div>
-                        <div class="form-group">
-                            <label for="contact">📞 Contact Number</label>
-                            <input type="tel" id="contact" placeholder="Enter phone number (optional)" autocomplete="tel">
-                        </div>
-                    </div>
-                    
-                    <div class="form-group full-width">
-                        <label for="birthdate">🎂 Birth Date</label>
-                        <input type="date" id="birthdate" required>
-                    </div>
-                    
-                    <button type="submit" class="btn">🎁 Add Birthday</button>
-                </form>
-            </div>
-
-            <!-- Birthday List Section -->
-            <div class="birthday-list">
-                <h2 class="section-title">📅 Birthday List</h2>
-                <div class="filters">
-                    <div class="filter-buttons">
-                        <button class="filter-btn active" data-filter="all">🎈 All</button>
-                        <button class="filter-btn" data-filter="today">🎂 Today</button>
-                        <button class="filter-btn" data-filter="thisMonth">📅 This Month</button>
-                        <button class="filter-btn" data-filter="upcoming">⏰ Next 7 Days</button>
-                        <button class="filter-btn" data-filter="monthWise">🗓️ Month Wise</button>
-                    </div>
-                </div>
-                <div id="birthdayContainer">
-                    <div class="empty-state">
-                        <svg viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
-                        </svg>
-                        <h3>No birthdays yet!</h3>
-                        <p>Add your first birthday to get started and never miss a celebration!</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div id="notification" class="notification"></div>
-
-    <!-- Include SheetJS for Excel file processing -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
-    <!-- Include PDF.js for PDF processing -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
-
-    <script>
-        // Set up PDF.js worker
-        if (typeof pdfjsLib !== 'undefined') {
-            pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
-        }
-
-        class SmartBirthdayReminder {
-            constructor() {
-                this.birthdays = this.loadBirthdays();
-                this.currentFilter = 'all';
-                this.chatHistory = [];
-                this.monthNames = [
-                    'January', 'February', 'March', 'April', 'May', 'June',
-                    'July', 'August', 'September', 'October', 'November', 'December'
-                ];
-                this.init();
-            }
-
-            init() {
-                this.bindEvents();
-                this.renderBirthdays();
-                this.updateStats();
-                this.checkTodaysBirthdays();
-                this.startDailyCheck();
-                this.createConfetti();
-                this.initializeChatbot();
-            }
-
-            bindEvents() {
-                // Original form events
-                document.getElementById('birthdayForm').addEventListener('submit', (e) => {
-                    e.preventDefault();
-                    this.addBirthday();
                 });
 
-                document.querySelectorAll('.filter-btn').forEach(btn => {
-                    btn.addEventListener('click', (e) => {
-                        this.setFilter(e.target.dataset.filter);
+                customGreetingTextarea.addEventListener('input', () => {
+                    // Deselect all preset options if custom message is typed
+                    greetingOptions.querySelectorAll('.greeting-option').forEach(opt => {
+                        opt.classList.remove('selected');
                     });
                 });
 
-                // Chatbot events
-                document.getElementById('chatSendBtn').addEventListener('click', () => {
-                    this.sendChatMessage();
-                });
-
-                document.getElementById('chatInput').addEventListener('keypress', (e) => {
-                    if (e.key === 'Enter' && !e.shiftKey) {
-                        e.preventDefault();
-                        this.sendChatMessage();
-                    }
-                });
-
-                // File upload events
-                const fileUploadArea = document.getElementById('fileUploadArea');
-                const fileInput = document.getElementById('fileInput');
-
-                fileUploadArea.addEventListener('click', () => fileInput.click());
-                fileUploadArea.addEventListener('dragover', (e) => {
-                    e.preventDefault();
-                    fileUploadArea.classList.add('dragover');
-                });
-                fileUploadArea.addEventListener('dragleave', () => {
-                    fileUploadArea.classList.remove('dragover');
-                });
-                fileUploadArea.addEventListener('drop', (e) => {
-                    e.preventDefault();
-                    fileUploadArea.classList.remove('dragover');
-                    this.handleFileUpload(e.dataTransfer.files);
-                });
-
-                fileInput.addEventListener('change', (e) => {
-                    this.handleFileUpload(e.target.files);
+                sendWhatsappButton.addEventListener('click', () => {
+                    this.sendWhatsappGreeting();
                 });
             }
 
-            initializeChatbot() {
-                this.addChatMessage('system', '🤖 AI Assistant is ready! Upload a file or ask me anything.');
-            }
-
-            async sendChatMessage() {
-                const input = document.getElementById('chatInput');
-                const message = input.value.trim();
-                
-                if (!message) return;
-
-                this.addChatMessage('user', message);
-                input.value = '';
-
-                try {
-                    await this.processChatMessage(message);
-                } catch (error) {
-                    this.addChatMessage('error', `❌ Error processing message: ${error.message}`);
-                }
-            }
-
-            async processChatMessage(message) {
-                const lowerMessage = message.toLowerCase();
-                
-                // Show typing indicator
-                const typingId = this.addChatMessage('bot', '🤔 Thinking...');
-                
-                // Simulate processing delay
-                await new Promise(resolve => setTimeout(resolve, 1000));
-                
-                let response = '';
-
-                // Pattern matching for different types of requests
-                if (lowerMessage.includes('add') && (lowerMessage.includes('birthday') || lowerMessage.includes('person'))) {
-                    response = this.handleAddBirthdayRequest(message);
-                } else if (lowerMessage.includes('today') || lowerMessage.includes('birthday today')) {
-                    response = this.handleTodayBirthdaysRequest();
-                } else if (lowerMessage.includes('upcoming') || lowerMessage.includes('next')) {
-                    response = this.handleUpcomingBirthdaysRequest();
-                } else if (lowerMessage.includes('help') || lowerMessage.includes('what can you do')) {
-                    response = this.getHelpMessage();
-                } else if (lowerMessage.includes('delete') || lowerMessage.includes('remove')) {
-                    response = this.handleDeleteRequest(message);
-                } else if (lowerMessage.includes('search') || lowerMessage.includes('find')) {
-                    response = this.handleSearchRequest(message);
-                } else if (lowerMessage.includes('export') || lowerMessage.includes('download')) {
-                    response = this.handleExportRequest();
-                } else if (lowerMessage.includes('month') || lowerMessage.includes('monthly')) {
-                    response = this.handleMonthlyRequest(message);
-                } else {
-                    response = `🤖 I understand you're asking about: "${message}"\n\nI can help you with:\n• Adding birthdays (just tell me the name and date)\n• Checking today's birthdays\n• Finding upcoming birthdays\n• Managing your birthday list\n• Processing uploaded files (Excel, CSV, PDF)\n• Month-wise birthday listings\n\nWhat would you like me to help with?`;
-                }
-
-                // Update the typing message with the actual response
-                this.updateChatMessage(typingId, response);
-            }
-
-            handleAddBirthdayRequest(message) {
-                // Enhanced pattern matching for birthday addition
-                const patterns = [
-                    /add\s+(.+?)\s+(born|birthday|birth)\s*(?:on\s*)?(\d{1,2}[\/\-]\d{1,2}[\/\-]\d{2,4}|\d{4}[\/\-]\d{1,2}[\/\-]\d{1,2})/i,
-                    /(.+?)\s+(born|birthday|birth)\s*(?:on\s*)?(\d{1,2}[\/\-]\d{1,2}[\/\-]\d{2,4}|\d{4}[\/\-]\d{1,2}[\/\-]\d{1,2})/i
-                ];
-                
-                for (const pattern of patterns) {
-                    const match = message.match(pattern);
-                    if (match) {
-                        const name = match[1].trim().replace(/^add\s+/i, '');
-                        const dateStr = match[3];
-                        
-                        try {
-                            const date = this.parseDate(dateStr);
-                            if (date) {
-                                this.addBirthdayFromChat(name, date);
-                                return `🎉 Great! I've added ${name}'s birthday (${date.toLocaleDateString()}) to your list!`;
-                            }
-                        } catch (error) {
-                            return `❌ I had trouble parsing the date "${dateStr}". Could you provide it in MM/DD/YYYY format?`;
-                        }
-                    }
-                }
-                
-                return `🤔 I'd love to help add a birthday! Please tell me the name and date like this:\n"Add John Smith birthday 01/15/1990" or "John Smith born 03/22/1985"`;
-            }
-
-            handleTodayBirthdaysRequest() {
-                const todaysBirthdays = this.birthdays.filter(b => this.isBirthdayToday(b.birthdate));
-                
-                if (todaysBirthdays.length === 0) {
-                    return `📅 No birthdays today! You're all caught up. 🎉`;
-                }
-
-                const birthdayList = todaysBirthdays.map(b => 
-                    `🎂 ${b.name} (${this.calculateAge(b.birthdate)} years old)`
-                ).join('\n');
-
-                return `🎉 Today's Birthdays:\n\n${birthdayList}\n\nDon't forget to wish them well! 🎈`;
-            }
-
-            handleUpcomingBirthdaysRequest() {
-                const upcomingBirthdays = this.birthdays.filter(b => {
-                    const days = this.getDaysUntilBirthday(b.birthdate);
-                    return days > 0 && days <= 7;
-                });
-
-                if (upcomingBirthdays.length === 0) {
-                    return `📅 No birthdays in the next 7 days. You can relax! 😌`;
-                }
-
-                const sortedUpcoming = upcomingBirthdays.sort((a, b) => 
-                    this.getDaysUntilBirthday(a.birthdate) - this.getDaysUntilBirthday(b.birthdate)
-                );
-
-                const birthdayList = sortedUpcoming.map(b => {
-                    const days = this.getDaysUntilBirthday(b.birthdate);
-                    const dayText = days === 1 ? 'tomorrow' : `in ${days} days`;
-                    return `🎈 ${b.name} - ${dayText}`;
-                }).join('\n');
-
-                return `⏰ Upcoming Birthdays (Next 7 Days):\n\n${birthdayList}`;
-            }
-
-            handleMonthlyRequest(message) {
-                const monthMatch = message.match(/(january|february|march|april|may|june|july|august|september|october|november|december)/i);
-                
-                if (monthMatch) {
-                    const monthName = monthMatch[1].toLowerCase();
-                    const monthIndex = this.monthNames.findIndex(m => m.toLowerCase() === monthName);
-                    
-                    const monthBirthdays = this.birthdays.filter(b => {
-                        const birthDate = new Date(b.birthdate);
-                        return birthDate.getMonth() === monthIndex;
-                    });
-
-                    if (monthBirthdays.length === 0) {
-                        return `📅 No birthdays found in ${this.monthNames[monthIndex]}.`;
-                    }
-
-                    const birthdayList = monthBirthdays.map(b => 
-                        `🎂 ${b.name} - ${this.formatDate(b.birthdate)}`
-                    ).join('\n');
-
-                    return `🗓️ Birthdays in ${this.monthNames[monthIndex]}:\n\n${birthdayList}`;
-                }
-
-                return `🗓️ I can show you birthdays for any month! Try asking "Show me birthdays in January" or similar.`;
-            }
-
-            getHelpMessage() {
-                return `🤖 **AI Birthday Assistant Help**\n\n**What I can do:**\n• 📄 Process Excel/CSV/PDF files with birthday data\n• ➕ Add birthdays through conversation\n• 📅 Check today's and upcoming birthdays\n• 🔍 Search for specific people\n• 📊 Export your birthday data\n• 🗓️ Show month-wise birthday listings\n• 🗑️ Help manage entries\n\n**Example commands:**\n• "Add John Smith birthday 01/15/1990"\n• "Who has birthdays today?"\n• "Show upcoming birthdays"\n• "Find Sarah"\n• "Show birthdays in March"\n• "Export my data"\n\n**File Upload:**\nDrag and drop Excel, CSV, or PDF files. I'll automatically extract birthday information and handle missing phone numbers.\n\nJust ask me anything! 😊`;
-            }
-
-            handleDeleteRequest(message) {
-                const nameMatch = message.match(/delete|remove\s+(.+)/i);
-                if (nameMatch) {
-                    const searchName = nameMatch[1].trim().toLowerCase();
-                    const foundBirthday = this.birthdays.find(b => 
-                        b.name.toLowerCase().includes(searchName)
-                    );
-                    
-                    if (foundBirthday) {
-                        return `🗑️ Found ${foundBirthday.name}. To delete, please use the birthday list interface for safety. I can help you search but not delete directly.`;
-                    } else {
-                        return `❌ I couldn't find anyone with a name containing "${searchName}". Could you check the spelling?`;
-                    }
-                }
-                return `🗑️ To delete a birthday, please specify the name like "delete John Smith" or use the birthday list interface.`;
-            }
-
-            handleSearchRequest(message) {
-                const searchMatch = message.match(/search|find\s+(.+)/i);
-                if (searchMatch) {
-                    const searchTerm = searchMatch[1].trim().toLowerCase();
-                    const results = this.birthdays.filter(b => 
-                        b.name.toLowerCase().includes(searchTerm) ||
-                        (b.contact && b.contact.toLowerCase().includes(searchTerm))
-                    );
-                    
-                    if (results.length === 0) {
-                        return `🔍 No results found for "${searchTerm}". Try a different search term.`;
-                    }
-                    
-                    const resultList = results.map(b => 
-                        `👤 ${b.name} - ${this.formatDate(b.birthdate)} (${this.calculateAge(b.birthdate)} years)`
-                    ).join('\n');
-                    
-                    return `🔍 Search Results for "${searchTerm}":\n\n${resultList}`;
-                }
-                return `🔍 Please specify what to search for, like "find John" or "search Smith".`;
-            }
-
-            handleExportRequest() {
-                this.exportBirthdays();
-                return `📊 Great! I've prepared your birthday data for download. Check your downloads folder for "birthdays_export.csv"!`;
-            }
-
-            async handleFileUpload(files) {
-                if (files.length === 0) return;
-
-                const processingIndicator = document.getElementById('processingIndicator');
-                processingIndicator.style.display = 'flex';
-
-                this.addChatMessage('system', `📤 Processing ${files.length} file(s)...`);
-
-                let totalProcessed = 0;
-                let totalAdded = 0;
-
-                for (const file of files) {
-                    try {
-                        const result = await this.processFile(file);
-                        totalProcessed += result.processed;
-                        totalAdded += result.added;
-                        
-                        this.addChatMessage('bot', `✅ Processed "${file.name}": Found ${result.processed} records, added ${result.added} new birthdays.`);
-                    } catch (error) {
-                        this.addChatMessage('error', `❌ Error processing "${file.name}": ${error.message}`);
-                    }
-                }
-
-                processingIndicator.style.display = 'none';
-                
-                if (totalAdded > 0) {
-                    this.renderBirthdays();
-                    this.updateStats();
-                    this.showNotification(`🎉 Successfully added ${totalAdded} birthdays from your files!`);
-                }
-
-                this.addChatMessage('bot', `🎉 File processing complete! Added ${totalAdded} new birthdays out of ${totalProcessed} total records processed.`);
-            }
-
-            async processFile(file) {
-                return new Promise((resolve, reject) => {
-                    const fileExtension = file.name.split('.').pop().toLowerCase();
-                    
-                    if (fileExtension === 'pdf') {
-                        this.processPDFFile(file).then(resolve).catch(reject);
-                    } else if (fileExtension === 'csv') {
-                        this.processCSVFile(file).then(resolve).catch(reject);
-                    } else if (['xlsx', 'xls'].includes(fileExtension)) {
-                        this.processExcelFile(file).then(resolve).catch(reject);
-                    } else if (['txt', 'docx'].includes(fileExtension)) {
-                        this.processTextFile(file).then(resolve).catch(reject);
-                    } else {
-                        reject(new Error('Unsupported file format. Please use CSV, Excel, PDF, or text files.'));
-                    }
-                });
-            }
-
-            async processPDFFile(file) {
-                try {
-                    const arrayBuffer = await file.arrayBuffer();
-                    const pdf = await pdfjsLib.getDocument(arrayBuffer).promise;
-                    let fullText = '';
-
-                    for (let i = 1; i <= pdf.numPages; i++) {
-                        const page = await pdf.getPage(i);
-                        const textContent = await page.getTextContent();
-                        const pageText = textContent.items.map(item => item.str).join(' ');
-                        fullText += pageText + '\n';
-                    }
-
-                    return this.extractBirthdaysFromText(fullText);
-                } catch (error) {
-                    throw new Error(`Failed to process PDF: ${error.message}`);
-                }
-            }
-
-            async processCSVFile(file) {
-                return new Promise((resolve, reject) => {
-                    const reader = new FileReader();
-                    
-                    reader.onload = (e) => {
-                        try {
-                            const data = e.target.result;
-                            const records = this.parseCSV(data);
-                            const result = this.processBirthdayRecords(records);
-                            resolve(result);
-                        } catch (error) {
-                            reject(error);
-                        }
-                    };
-
-                    reader.onerror = () => reject(new Error('Failed to read CSV file'));
-                    reader.readAsText(file);
-                });
-            }
-
-            async processExcelFile(file) {
-                return new Promise((resolve, reject) => {
-                    const reader = new FileReader();
-                    
-                    reader.onload = (e) => {
-                        try {
-                            const data = e.target.result;
-                            const records = this.parseExcel(data);
-                            const result = this.processBirthdayRecords(records);
-                            resolve(result);
-                        } catch (error) {
-                            reject(error);
-                        }
-                    };
-
-                    reader.onerror = () => reject(new Error('Failed to read Excel file'));
-                    reader.readAsArrayBuffer(file);
-                });
-            }
-
-            async processTextFile(file) {
-                return new Promise((resolve, reject) => {
-                    const reader = new FileReader();
-                    
-                    reader.onload = (e) => {
-                        try {
-                            const data = e.target.result;
-                            const result = this.extractBirthdaysFromText(data);
-                            resolve(result);
-                        } catch (error) {
-                            reject(error);
-                        }
-                    };
-
-                    reader.onerror = () => reject(new Error('Failed to read text file'));
-                    reader.readAsText(file);
-                });
-            }
-
-            extractBirthdaysFromText(text) {
-                const lines = text.split('\n');
-                let processed = 0;
-                let added = 0;
-
-                // Enhanced regex patterns for birthday extraction
-                const patterns = [
-                    /([A-Za-z\s]+)[\s\-\:]+(\d{1,2}[\/\-]\d{1,2}[\/\-]\d{2,4})/g,
-                    /([A-Za-z\s]+)[\s]*born[\s]*(\d{1,2}[\/\-]\d{1,2}[\/\-]\d{2,4})/gi,
-                    /([A-Za-z\s]+)[\s]*birthday[\s]*(\d{1,2}[\/\-]\d{1,2}[\/\-]\d{2,4})/gi,
-                    /([A-Za-z\s]+)[\s]*DOB[\s]*(\d{1,2}[\/\-]\d{1,2}[\/\-]\d{2,4})/gi,
-                ];
-
-                for (const line of lines) {
-                    for (const pattern of patterns) {
-                        let match;
-                        while ((match = pattern.exec(line)) !== null) {
-                            processed++;
-                            const name = match[1].trim();
-                            const dateStr = match[2];
-                            
-                            if (name.length > 2) {
-                                const date = this.parseDate(dateStr);
-                                if (date && this.isValidName(name)) {
-                                    const existing = this.birthdays.find(b => 
-                                        b.name.toLowerCase() === name.toLowerCase()
-                                    );
-
-                                    if (!existing) {
-                                        this.birthdays.push({
-                                            id: Date.now() + Math.random(),
-                                            name,
-                                            birthdate: date.toISOString().split('T')[0],
-                                            contact: 'Not available',
-                                            dateAdded: new Date().toISOString()
-                                        });
-                                        added++;
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-
-                this.saveBirthdays();
-                return { processed, added };
-            }
-
-            isValidName(name) {
-                // Basic validation for names
-                const cleanName = name.trim();
-                return cleanName.length >= 2 && 
-                       cleanName.length <= 50 && 
-                       /^[A-Za-z\s\-\.]+$/.test(cleanName) &&
-                       !/(date|birth|born|dob|phone|contact|email)/i.test(cleanName);
-            }
-
-            parseCSV(data) {
-                const lines = data.split('\n').filter(line => line.trim());
-                if (lines.length < 2) throw new Error('CSV file appears to be empty or has no data rows.');
-
-                const headers = this.parseCSVLine(lines[0]).map(h => h.trim().toLowerCase());
-                const records = [];
-
-                for (let i = 1; i < lines.length; i++) {
-                    const values = this.parseCSVLine(lines[i]);
-                    if (values.length === 0) continue;
-                    
-                    const record = {};
-                    headers.forEach((header, index) => {
-                        record[header] = values[index] ? values[index].trim() : '';
-                    });
-                    
-                    records.push(record);
-                }
-
-                return records;
-            }
-
-            parseCSVLine(line) {
-                const result = [];
-                let current = '';
-                let inQuotes = false;
-                
-                for (let i = 0; i < line.length; i++) {
-                    const char = line[i];
-                    
-                    if (char === '"') {
-                        inQuotes = !inQuotes;
-                    } else if (char === ',' && !inQuotes) {
-                        result.push(current);
-                        current = '';
-                    } else {
-                        current += char;
-                    }
-                }
-                
-                result.push(current);
-                return result.map(item => item.replace(/^"|"$/g, ''));
-            }
-
-            parseExcel(data) {
-                try {
-                    const workbook = XLSX.read(data, { type: 'array', cellDates: true, dateNF: 'mm/dd/yyyy' });
-                    const sheetName = workbook.SheetNames[0];
-                    const worksheet = workbook.Sheets[sheetName];
-                    const jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, raw: false });
-
-                    if (jsonData.length < 2) throw new Error('Excel file appears to be empty or has no data rows.');
-
-                    const headers = jsonData[0].map(h => String(h || '').trim().toLowerCase());
-                    const records = [];
-
-                    for (let i = 1; i < jsonData.length; i++) {
-                        const row = jsonData[i];
-                        if (!row || row.length === 0) continue;
-
-                        const record = {};
-                        headers.forEach((header, index) => {
-                            record[header] = row[index] ? String(row[index]).trim() : '';
-                        });
-                        
-                        records.push(record);
-                    }
-
-                    return records;
-                } catch (error) {
-                    throw new Error(`Excel parsing failed: ${error.message}`);
-                }
-            }
-
-            processBirthdayRecords(records) {
-                let processed = 0;
-                let added = 0;
-
-                for (const record of records) {
-                    processed++;
-                    
-                    const name = this.extractName(record);
-                    const birthdate = this.extractBirthdate(record);
-                    const contact = this.extractContact(record) || 'Not available';
-
-                    if (name && birthdate) {
-                        // Check if birthday already exists
-                        const existing = this.birthdays.find(b => 
-                            b.name.toLowerCase() === name.toLowerCase() && 
-                            b.birthdate === birthdate
-                        );
-
-                        if (!existing) {
-                            this.birthdays.push({
-                                id: Date.now() + Math.random(),
-                                name,
-                                birthdate,
-                                contact,
-                                dateAdded: new Date().toISOString()
-                            });
-                            added++;
-                        }
-                    }
-                }
-
-                this.saveBirthdays();
-                return { processed, added };
-            }
-
-            extractName(record) {
-                // Enhanced name extraction with more field variations
-                const nameFields = [
-                    'name', 'full name', 'fullname', 'full_name',
-                    'first name', 'firstname', 'first_name',
-                    'last name', 'lastname', 'last_name',
-                    'contact name', 'contact_name', 'person',
-                    'employee name', 'student name', 'member name'
-                ];
-                
-                for (const field of nameFields) {
-                    if (record[field] && record[field].trim()) {
-                        return record[field].trim();
-                    }
-                }
-
-                // Try combining first and last name
-                const firstName = record['first name'] || record['firstname'] || record['first_name'] || '';
-                const lastName = record['last name'] || record['lastname'] || record['last_name'] || '';
-                
-                if (firstName && lastName) {
-                    return `${firstName} ${lastName}`.trim();
-                }
-
-                return firstName || lastName || null;
-            }
-
-            extractBirthdate(record) {
-                // Enhanced birthdate extraction
-                const dateFields = [
-                    'birthday', 'birthdate', 'birth date', 'birth_date',
-                    'dob', 'date of birth', 'date_of_birth',
-                    'born', 'born date', 'born_date',
-                    'birth day', 'birth_day'
-                ];
-                
-                for (const field of dateFields) {
-                    if (record[field] && record[field].trim()) {
-                        const date = this.parseDate(record[field]);
-                        if (date) {
-                            return date.toISOString().split('T')[0];
-                        }
-                    }
-                }
-
-                return null;
-            }
-
-            extractContact(record) {
-                // Enhanced contact extraction
-                const contactFields = [
-                    'phone', 'telephone', 'contact', 'mobile', 'cell', 'number',
-                    'phone number', 'phone_number', 'contact number', 'contact_number',
-                    'mobile number', 'mobile_number', 'cell phone', 'cell_phone'
-                ];
-                
-                for (const field of contactFields) {
-                    if (record[field] && record[field].trim()) {
-                        return record[field].trim();
-                    }
-                }
-
-                return null;
-            }
-
-            parseDate(dateStr) {
-                if (!dateStr) return null;
-
-                // Clean the date string
-                dateStr = String(dateStr).trim();
-
-                // Handle Excel date numbers
-                if (!isNaN(dateStr) && dateStr > 25000) {
-                    try {
-                        // Excel date conversion (days since 1900-01-01)
-                        const excelDate = new Date((dateStr - 25569) * 86400 * 1000);
-                        if (!isNaN(excelDate.getTime())) {
-                            return excelDate;
-                        }
-                    } catch (e) {
-                        // Continue with other parsing methods
-                    }
-                }
-
-                // Try multiple date formats
-                const formats = [
-                    /(\d{1,2})[\/\-](\d{1,2})[\/\-](\d{4})/,        // MM/DD/YYYY or DD/MM/YYYY
-                    /(\d{4})[\/\-](\d{1,2})[\/\-](\d{1,2})/,        // YYYY/MM/DD
-                    /(\d{1,2})[\/\-](\d{1,2})[\/\-](\d{2})/,        // MM/DD/YY
-                    /(\d{1,2})\s+(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\s+(\d{4})/i, // DD Mon YYYY
-                    /(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\s+(\d{1,2}),?\s+(\d{4})/i // Mon DD, YYYY
-                ];
-
-                for (const format of formats) {
-                    const match = dateStr.match(format);
-                    if (match) {
-                        let year, month, day;
-                        
-                        if (format.source.includes('Jan|Feb')) {
-                            // Handle month name formats
-                            const monthNames = ['jan', 'feb', 'mar', 'apr', 'may', 'jun',
-                                              'jul', 'aug', 'sep', 'oct', 'nov', 'dec'];
-                            if (match[3]) {
-                                // DD Mon YYYY
-                                day = parseInt(match[1]);
-                                month = monthNames.indexOf(match[2].toLowerCase());
-                                year = parseInt(match[3]);
-                            } else {
-                                // Mon DD, YYYY
-                                month = monthNames.indexOf(match[1].toLowerCase());
-                                day = parseInt(match[2]);
-                                year = parseInt(match[3]);
-                            }
-                        } else if (match[1].length === 4) {
-                            // YYYY/MM/DD format
-                            year = parseInt(match[1]);
-                            month = parseInt(match[2]) - 1;
-                            day = parseInt(match[3]);
-                        } else if (match[3] && match[3].length === 4) {
-                            // MM/DD/YYYY format
-                            month = parseInt(match[1]) - 1;
-                            day = parseInt(match[2]);
-                            year = parseInt(match[3]);
-                        } else {
-                            // MM/DD/YY format
-                            month = parseInt(match[1]) - 1;
-                            day = parseInt(match[2]);
-                            year = parseInt(match[3]);
-                            if (year < 50) year += 2000;
-                            else if (year < 100) year += 1900;
-                        }
-
-                        const date = new Date(year, month, day);
-                        if (!isNaN(date.getTime()) && date.getFullYear() >= 1900 && date.getFullYear() <= 2100) {
-                            return date;
-                        }
-                    }
-                }
-
-                // Try native Date parsing as fallback
-                try {
-                    const date = new Date(dateStr);
-                    if (!isNaN(date.getTime()) && date.getFullYear() >= 1900 && date.getFullYear() <= 2100) {
-                        return date;
-                    }
-                } catch (e) {
-                    // Ignore parsing errors
-                }
-
-                return null;
-            }
-
-            addChatMessage(type, message) {
-                const chatMessages = document.getElementById('chatMessages');
-                const messageId = 'msg-' + Date.now() + '-' + Math.random();
-                
-                const messageDiv = document.createElement('div');
-                messageDiv.className = `message ${type}`;
-                messageDiv.id = messageId;
-                messageDiv.innerHTML = message.replace(/\n/g, '<br>');
-                
-                chatMessages.appendChild(messageDiv);
-                chatMessages.scrollTop = chatMessages.scrollHeight;
-                
-                return messageId;
-            }
-
-            updateChatMessage(messageId, newContent) {
-                const messageElement = document.getElementById(messageId);
-                if (messageElement) {
-                    messageElement.innerHTML = newContent.replace(/\n/g, '<br>');
-                }
-            }
-
-            addBirthdayFromChat(name, date) {
-                const birthday = {
-                    id: Date.now() + Math.random(),
-                    name,
-                    birthdate: date.toISOString().split('T')[0],
-                    contact: 'Added via chat',
-                    dateAdded: new Date().toISOString()
-                };
-
-                this.birthdays.push(birthday);
-                this.saveBirthdays();
-                this.renderBirthdays();
-                this.updateStats();
-            }
-
-            exportBirthdays() {
-                if (this.birthdays.length === 0) {
-                    this.showNotification('❌ No birthdays to export!');
-                    return;
-                }
-
-                const csvContent = [
-                    ['Name', 'Birth Date', 'Age', 'Contact', 'Days Until Birthday'].join(','),
-                    ...this.birthdays.map(b => [
-                        `"${b.name}"`,
-                        b.birthdate,
-                        this.calculateAge(b.birthdate),
-                        `"${b.contact}"`,
-                        this.getDaysUntilBirthday(b.birthdate)
-                    ].join(','))
-                ].join('\n');
-
-                const blob = new Blob([csvContent], { type: 'text/csv' });
-                const url = window.URL.createObjectURL(blob);
-                const a = document.createElement('a');
-                a.href = url;
-                a.download = 'birthdays_export.csv';
-                document.body.appendChild(a);
-                a.click();
-                document.body.removeChild(a);
-                window.URL.revokeObjectURL(url);
-            }
-
-            // Original methods (keeping existing functionality)
             addBirthday() {
                 const name = document.getElementById('name').value.trim();
                 const birthdate = document.getElementById('birthdate').value;
@@ -4019,83 +917,145 @@
                     return;
                 }
 
+                let tableHtml = `
+                    <table class="birthday-table">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Birth Date</th>
+                                <th>Contact</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                `;
+
                 if (this.currentFilter === 'monthWise') {
-                    this.renderMonthWiseBirthdays(container, filteredBirthdays);
+                    const birthdaysByMonth = {};
+                    birthdays.forEach(birthday => {
+                        const month = new Date(birthday.birthdate).getMonth();
+                        if (!birthdaysByMonth[month]) {
+                            birthdaysByMonth[month] = [];
+                        }
+                        birthdaysByMonth[month].push(birthday);
+                    });
+
+                    for (let month = 0; month < 12; month++) {
+                        if (birthdaysByMonth[month] && birthdaysByMonth[month].length > 0) {
+                            const monthName = this.monthNames[month];
+                            const monthBirthdays = birthdaysByMonth[month].sort((a, b) => {
+                                const dayA = new Date(a.birthdate).getDate();
+                                const dayB = new Date(b.birthdate).getDate();
+                                return dayA - dayB;
+                            });
+
+                            tableHtml += `
+                                <tr>
+                                    <td colspan="4" class="month-header">
+                                        📅 ${monthName} (${monthBirthdays.length} birthday${monthBirthdays.length > 1 ? 's' : ''})
+                                    </td>
+                                </tr>
+                            `;
+                            monthBirthdays.forEach(birthday => {
+                                tableHtml += this.createBirthdayTableRow(birthday);
+                            });
+                        }
+                    }
                 } else {
-                    this.renderRegularBirthdays(container, filteredBirthdays);
-                }
-            }
-
-            renderMonthWiseBirthdays(container, birthdays) {
-                const birthdaysByMonth = {};
-                
-                // Group birthdays by month
-                birthdays.forEach(birthday => {
-                    const month = new Date(birthday.birthdate).getMonth();
-                    if (!birthdaysByMonth[month]) {
-                        birthdaysByMonth[month] = [];
-                    }
-                    birthdaysByMonth[month].push(birthday);
-                });
-
-                let html = '';
-                
-                // Create sections for each month that has birthdays
-                for (let month = 0; month < 12; month++) {
-                    if (birthdaysByMonth[month] && birthdaysByMonth[month].length > 0) {
-                        const monthName = this.monthNames[month];
-                        const monthBirthdays = birthdaysByMonth[month].sort((a, b) => {
-                            const dayA = new Date(a.birthdate).getDate();
-                            const dayB = new Date(b.birthdate).getDate();
-                            return dayA - dayB;
-                        });
-
-                        html += `
-                            <div class="month-section">
-                                <div class="month-header">
-                                    📅 ${monthName} (${monthBirthdays.length} birthday${monthBirthdays.length > 1 ? 's' : ''})
-                                </div>
-                                <div class="month-birthdays">
-                                    ${monthBirthdays.map(birthday => this.createBirthdayCard(birthday)).join('')}
-                                </div>
-                            </div>
-                        `;
-                    }
+                    const sortedBirthdays = this.sortBirthdays(filteredBirthdays);
+                    sortedBirthdays.forEach(birthday => {
+                        tableHtml += this.createBirthdayTableRow(birthday);
+                    });
                 }
 
-                container.innerHTML = html;
+                tableHtml += `
+                        </tbody>
+                    </table>
+                `;
+                container.innerHTML = tableHtml;
             }
 
-            renderRegularBirthdays(container, birthdays) {
-                const sortedBirthdays = this.sortBirthdays(birthdays);
-                container.innerHTML = sortedBirthdays.map(birthday => this.createBirthdayCard(birthday)).join('');
-            }
-
-            createBirthdayCard(birthday) {
+            createBirthdayTableRow(birthday) {
                 const age = this.calculateAge(birthday.birthdate);
                 const isToday = this.isBirthdayToday(birthday.birthdate);
                 const formattedDate = this.formatDate(birthday.birthdate);
                 const daysUntil = this.getDaysUntilBirthday(birthday.birthdate);
 
-                const contactButton = birthday.contact && birthday.contact !== 'Not available' && birthday.contact !== 'Added via chat'
-                    ? `<button class="contact-btn" onclick="window.open('tel:${birthday.contact}')">📞 Call</button>`
-                    : '';
+                let daysText = '';
+                if (isToday) {
+                    daysText = '🎉 TODAY!';
+                } else if (daysUntil === 1) {
+                    daysText = '🎈 Tomorrow';
+                } else if (daysUntil > 0) {
+                    daysText = `📅 In ${daysUntil} days`;
+                }
 
-                const daysText = daysUntil === 0 ? '🎉 TODAY!' : 
-                                daysUntil === 1 ? '🎈 Tomorrow' : 
-                                daysUntil > 0 ? `📅 In ${daysUntil} days` : '';
+                const contactNumber = birthday.contact && birthday.contact !== 'Not available' ? birthday.contact : '';
 
                 return `
-                    <div class="birthday-item ${isToday ? 'today' : ''}" onclick="this.classList.toggle('expanded')">
-                        <div class="birthday-name">${birthday.name}</div>
-                        <div class="birthday-date">
-                            ${formattedDate} ${daysText}
-                        </div>
-                        <div class="birthday-contact">📞 ${birthday.contact}</div>
-                        ${contactButton}
-                        <div class="birthday-age">${age} years</div>
-                    </div>
+                    <tr class="${isToday ? 'today' : ''}">
+                        <td class="birthday-name-cell">
+                            ${birthday.name} <span class="birthday-age">${age} years</span>
+                        </td>
+                        <td class="birthday-date-cell">
+                            ${formattedDate} ${daysText ? `<span class="days-until">${daysText}</span>` : ''}
+                        </td>
+                        <td class="birthday-contact-cell">
+                            ${contactNumber || 'N/A'}
+                        </td>
+                        <td class="action-buttons">
+                            ${contactNumber ? `<button class="btn-small call" onclick="window.open('tel:${contactNumber}')">📞 Call</button>` : ''}
+                            ${contactNumber ? `<button class="btn-small whatsapp" onclick="smartReminder.openWhatsappModal('${birthday.id}')">💬 WhatsApp</button>` : ''}
+                        </td>
+                    </tr>
                 `;
+            }
+
+            openWhatsappModal(birthdayId) {
+                this.selectedBirthdayForWhatsapp = this.birthdays.find(b => b.id == birthdayId);
+                if (this.selectedBirthdayForWhatsapp) {
+                    document.getElementById('modalRecipientName').textContent = this.selectedBirthdayForWhatsapp.name;
+                    document.getElementById('customGreeting').value = ''; // Clear custom message
+                    document.querySelectorAll('.greeting-option').forEach(opt => opt.classList.remove('selected')); // Deselect presets
+                    document.getElementById('greetingModal').style.display = 'block';
+                } else {
+                    this.showNotification('Error: Birthday not found for WhatsApp.', 3000);
+                }
+            }
+
+            sendWhatsappGreeting() {
+                if (!this.selectedBirthdayForWhatsapp || !this.selectedBirthdayForWhatsapp.contact) {
+                    this.showNotification('Cannot send WhatsApp: Contact number missing.', 3000);
+                    return;
+                }
+
+                const contactNumber = this.selectedBirthdayForWhatsapp.contact.replace(/\D/g, ''); // Clean number
+                if (!contactNumber) {
+                    this.showNotification('Invalid contact number for WhatsApp.', 3000);
+                    return;
+                }
+
+                let message = '';
+                const customGreetingTextarea = document.getElementById('customGreeting');
+                const selectedOption = document.querySelector('.greeting-option.selected');
+
+                if (customGreetingTextarea.value.trim()) {
+                    message = customGreetingTextarea.value.trim();
+                } else if (selectedOption) {
+                    message = selectedOption.dataset.greeting;
+                } else {
+                    this.showNotification('Please select a greeting or type a custom message.', 3000);
+                    return;
+                }
+
+                // Replace placeholder with actual name
+                message = message.replace(/\[Name\]/g, this.selectedBirthdayForWhatsapp.name);
+
+                const whatsappUrl = `https://wa.me/${contactNumber}?text=${encodeURIComponent(message)}`;
+                window.open(whatsappUrl, '_blank');
+
+                document.getElementById('greetingModal').style.display = 'none';
+                this.showNotification('WhatsApp message opened!', 3000);
             }
 
             getFilteredBirthdays() {
@@ -4340,8 +1300,9 @@
         document.head.appendChild(style);
 
         // Initialize the application
+        let smartReminder; // Make it globally accessible for onclick events
         document.addEventListener('DOMContentLoaded', () => {
-            new SmartBirthdayReminder();
+            smartReminder = new SmartBirthdayReminder();
         });
     </script>
 </body>
