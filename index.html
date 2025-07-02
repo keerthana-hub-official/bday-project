@@ -1014,15 +1014,32 @@
             .birthday-table tr {
                 padding: 0.8rem;
             }
+            /* Specific styles for table cells on very small screens */
             .birthday-table td {
-                padding: 0.4rem;
-                font-size: 0.8rem; /* Adjusted for readability */
-                padding-left: 45%;
+                display: flex; /* Make cells flex containers */
+                flex-direction: row; /* Arrange content horizontally */
+                justify-content: space-between; /* Space out label and value */
+                align-items: center; /* Vertically align items */
+                padding: 0.4rem 0; /* Adjust padding */
+                font-size: 0.8rem; /* Smaller font size for cell content */
             }
+
             .birthday-table td::before {
-                width: 40%;
+                content: attr(data-label); /* Use data-label for pseudo-element content */
+                font-weight: 600; /* Make the label bold */
+                color: #34495e; /* Color for the label */
+                width: 40%; /* Allocate width for the label */
+                text-align: left; /* Align label to the left */
+                padding-right: 10px; /* Space between label and value */
+                box-sizing: border-box; /* Include padding in width calculation */
+                display: block; /* Ensure it takes its own space */
                 font-size: 0.85rem; /* Adjusted for readability */
             }
+            /* Remove padding-left from td as ::before now handles the label */
+            .birthday-table td:not(.action-buttons) {
+                padding-left: 0;
+            }
+
             .birthday-name-cell {
                 font-size: 0.9rem; /* Adjusted for readability */
             }
