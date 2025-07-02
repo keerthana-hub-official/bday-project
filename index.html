@@ -94,6 +94,34 @@
             color: #2c3e50;
             margin-bottom: 1rem;
             text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.15);
+            
+            /* Added flex properties for vertical stacking and centering */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .homepage-header h1 .emoji {
+            -webkit-text-fill-color: initial; /* Reset text fill color for emojis */
+            background: none; /* Remove background clip for emojis */
+            font-size: 1em; /* Keep emoji size consistent with h1 */
+            margin-bottom: 0.2em; /* Space between emoji and text */
+        }
+
+        .homepage-header h1 .main-title-small {
+            font-size: 0.6em; /* Make it smaller relative to the h1's font-size */
+            
+            /* Apply rainbow gradient and animation directly to this span */
+            background: linear-gradient(90deg, #ff0000, #ff69b4, #ff7f00, #ffff00, #00ff00, #0000ff, #4b0082, #9400d3); /* Red, HotPink, Orange, Yellow, Green, Blue, Indigo, Violet */
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-size: 200% 100%; /* Make gradient wider than text to allow movement */
+            animation: rainbow-fade 8s linear infinite; /* Animation for fading colors */
+
+            white-space: nowrap; /* Keep it in one line */
+            display: block; /* Ensure it takes its own line within the flex container */
+            margin-bottom: 0.2em; /* Small space between the two parts */
         }
 
         .homepage-header p {
@@ -265,12 +293,14 @@
             z-index: 1;
             text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.4); /* More pronounced shadow */
             letter-spacing: 2px; /* Add some letter spacing */
-            /* Updated: Rainbow gradient with pink and red, and animation */
-            background: linear-gradient(90deg, #ff0000, #ff69b4, #ff7f00, #ffff00, #00ff00, #0000ff, #4b0082, #9400d3); /* Red, HotPink, Orange, Yellow, Green, Blue, Indigo, Violet */
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-size: 200% 100%; /* Make gradient wider than text to allow movement */
-            animation: rainbow-fade 8s linear infinite; /* Animation for fading colors */
+            
+            /* REMOVED background, -webkit-background-clip, -webkit-text-fill-color, and animation from h1 itself */
+            /* These properties are now applied to the spans inside h1 */
+
+            display: flex; /* Use flexbox to align content within h1 */
+            flex-direction: column; /* Stack items vertically */
+            align-items: center; /* Center items horizontally */
+            justify-content: center;
         }
 
         @keyframes rainbow-fade {
@@ -282,10 +312,27 @@
         .main-content .header h1 .emoji {
             -webkit-text-fill-color: initial; /* Reset text fill color for emojis */
             background: none; /* Remove background clip for emojis */
+            font-size: 1em; /* Keep emoji size consistent with h1 */
+            margin-bottom: 0.2em; /* Space between emoji and text */
+        }
+
+        .main-content .header h1 .main-title-small {
+            font-size: 0.6em; /* Make it smaller relative to the h1's font-size */
+            
+            /* Apply rainbow gradient and animation directly to this span */
+            background: linear-gradient(90deg, #ff0000, #ff69b4, #ff7f00, #ffff00, #00ff00, #0000ff, #4b0082, #9400d3); /* Red, HotPink, Orange, Yellow, Green, Blue, Indigo, Violet */
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-size: 200% 100%; /* Make gradient wider than text to allow movement */
+            animation: rainbow-fade 8s linear infinite; /* Animation for fading colors */
+
+            white-space: nowrap; /* Keep it in one line */
+            display: block; /* Ensure it takes its own line within the flex container */
+            margin-bottom: 0.2em; /* Small space between the two parts */
         }
 
         /* Centered tagline for main page */
-        .main-content .header p {
+        .main-content .header .main-tagline { /* Changed from p to .main-tagline for specificity */
             font-size: 1.5rem; /* Larger font for tagline */
             opacity: 0.95;
             position: relative;
@@ -798,15 +845,68 @@
             .main-content .header h1 {
                 font-size: 2.5rem;
             }
-            .main-content .header p {
+            .main-content .header .main-tagline {
                 font-size: 1.2rem;
             }
             .form-grid {
                 grid-template-columns: 1fr;
             }
-            .birthday-table th, .birthday-table td {
-                padding: 0.6rem;
-                font-size: 0.75rem;
+            /* Responsive table styles for 768px and below */
+            .birthday-table {
+                border: 0; /* Remove table border */
+            }
+
+            .birthday-table thead {
+                display: none; /* Hide table headers */
+            }
+
+            .birthday-table tr {
+                display: block; /* Make each row a block */
+                margin-bottom: 1rem; /* Space between rows */
+                border: 1px solid #e0e6ed; /* Add a border to each "card" */
+                border-radius: 15px;
+                padding: 1rem;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            }
+
+            .birthday-table td {
+                display: block; /* Make each cell a block */
+                text-align: right; /* Align content to the right */
+                padding-left: 50%; /* Make space for the label */
+                position: relative;
+                border-bottom: 1px dashed #eee; /* Lighter separator */
+                font-size: 0.75rem; /* Adjust font size for cells */
+                padding: 0.6rem; /* Adjust padding for cells */
+            }
+
+            .birthday-table td:last-child {
+                border-bottom: 0; /* No border for the last cell */
+            }
+
+            .birthday-table td::before {
+                content: attr(data-label); /* Use data-label for content */
+                position: absolute;
+                left: 0;
+                width: 45%; /* Space for the label */
+                padding-left: 10px;
+                font-weight: bold;
+                text-align: left;
+                color: #34495e;
+            }
+
+            /* Specific adjustments for action buttons within the responsive table */
+            .action-buttons {
+                justify-content: flex-start; /* Align buttons to the left */
+                margin-top: 10px; /* Space from previous content */
+                flex-wrap: wrap;
+                gap: 0.5rem;
+            }
+            .action-buttons .btn-small {
+                flex: 1 1 auto; /* Allow buttons to take available space */
+                min-width: unset; /* Remove min-width constraint */
+                max-width: 100%; /* Allow full width if needed */
+                padding: 0.5rem 0.8rem;
+                font-size: 0.8rem;
             }
             .birthday-name-cell {
                 font-size: 0.9rem;
@@ -814,17 +914,6 @@
             .birthday-age, .days-until {
                 font-size: 0.7rem;
                 padding: 0.2rem 0.6rem;
-            }
-            .action-buttons {
-                flex-direction: row; /* Keep horizontal on medium screens */
-                flex-wrap: wrap;
-                justify-content: flex-end;
-            }
-            .action-buttons .btn-small {
-                padding: 0.5rem 0.8rem;
-                font-size: 0.8rem;
-                width: auto; /* Allow buttons to size naturally */
-                margin-bottom: 0; /* Remove extra margin */
             }
             .modal-content {
                 margin: 10% auto;
@@ -846,25 +935,26 @@
                 font-size: 1.1rem;
             }
             .stats {
-                /* CHANGE: Keep horizontal even on very small screens */
                 flex-direction: row; /* Ensure it stays row */
-                flex-wrap: wrap; /* Allow wrapping */
+                flex-wrap: nowrap; /* Prevent wrapping */
                 justify-content: center; /* Center items */
-                align-items: flex-start; /* Align items to the start of the cross axis */
+                align-items: stretch; /* Stretch items to fill height if needed */
                 gap: 5px; /* Reduce gap further for small screens */
+                overflow-x: auto; /* Allow horizontal scrolling if content overflows */
+                padding-bottom: 5px; /* Add some padding for scrollbar if present */
             }
             .stat-card {
                 padding: 0.5rem; /* Even smaller padding */
-                min-width: unset; /* Remove min-width constraint */
-                flex: 1 1 calc(33% - 5px); /* Try 3 items per row, or adjust as needed */
+                flex: 0 0 auto; /* Don't grow or shrink, take content width */
+                min-width: 80px; /* Set a smaller minimum width */
                 max-width: 100px; /* Limit max width to keep them small */
             }
             .stat-number {
-                font-size: 1.5rem; /* Smaller font size for numbers */
+                font-size: 1.2rem; /* Smaller font size for numbers */
             }
             .stat-label {
                 color: #7f8c8d;
-                font-size: 0.7rem; /* Smaller font size for labels */
+                font-size: 0.6rem; /* Smaller font size for labels */
             }
             .enter-button {
                 padding: 1.2rem 2.5rem;
@@ -878,7 +968,7 @@
             .main-content .header h1 {
                 font-size: 2rem;
             }
-            .main-content .header p {
+            .main-content .header .main-tagline {
                 font-size: 1rem;
             }
             .form-section, .birthday-list {
@@ -898,9 +988,17 @@
                 padding: 1rem 2rem;
                 font-size: 1rem;
             }
-            .birthday-table th, .birthday-table td {
+            .birthday-table tr {
+                padding: 0.8rem;
+            }
+            .birthday-table td {
                 padding: 0.4rem;
                 font-size: 0.7rem;
+                padding-left: 45%;
+            }
+            .birthday-table td::before {
+                width: 40%;
+                font-size: 0.75rem;
             }
             .birthday-name-cell {
                 font-size: 0.8rem;
@@ -910,7 +1008,6 @@
                 padding: 0.15rem 0.5rem;
             }
             .action-buttons {
-                /* CHANGE: Keep horizontal even on very small screens */
                 flex-direction: row; /* Ensure it stays row */
                 flex-wrap: wrap; /* Allow wrapping */
                 justify-content: flex-end; /* Align to end */
@@ -958,7 +1055,8 @@
     <!-- Homepage Section -->
     <div class="homepage-container" id="homepageSection">
         <div class="homepage-header">
-            <h1>🎂 Smart Birthday Reminder</h1>
+            <!-- Updated Homepage Title to match Main Page Title structure -->
+            <h1><span class="emoji">🎂</span> <span class="main-title-small">Smart Birthday Reminder</span></h1>
             <p>Never miss a special day again!</p>
         </div>
 
@@ -989,8 +1087,8 @@
     <!-- Birthday Management Section (Initially hidden) -->
     <div class="main-content" id="birthdayManagementSection" style="display: none;">
         <div class="header">
-            <h1><span class="emoji">🎂</span> Smart Birthday Reminder</h1>
-            <p>Manage your special days!</p>
+            <h1><span class="emoji">🎂</span> <span class="main-title-small">Smart Birthday Reminder</span></h1>
+            <p class="main-tagline">Manage your special days!</p>
         </div>
 
         <div class="form-section">
@@ -1296,16 +1394,16 @@
 
                 return `
                     <tr class="${isToday ? 'today' : ''}">
-                        <td class="birthday-name-cell">
+                        <td class="birthday-name-cell" data-label="Name">
                             ${birthday.name} <span class="birthday-age">${age} years</span>
                         </td>
-                        <td class="birthday-date-cell">
+                        <td class="birthday-date-cell" data-label="Birth Date">
                             ${formattedDate} ${daysText ? `<span class="days-until">${daysText}</span>` : ''}
                         </td>
-                        <td class="birthday-contact-cell">
+                        <td class="birthday-contact-cell" data-label="Contact">
                             ${contactNumber || 'N/A'}
                         </td>
-                        <td class="action-buttons">
+                        <td class="action-buttons" data-label="Actions">
                             ${contactNumber ? `<button class="btn-small call" onclick="smartReminder.callContact('${contactNumber}')">📞 Call</button>` : ''}
                             ${contactNumber ? `<button class="btn-small whatsapp" onclick="smartReminder.openWhatsappModal('${birthday.id}')">💬 WhatsApp</button>` : ''}
                         </td>
