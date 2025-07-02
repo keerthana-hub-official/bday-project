@@ -495,8 +495,9 @@
         .action-buttons {
             display: flex;
             gap: 0.5rem;
-            flex-wrap: wrap;
-            justify-content: flex-end;
+            flex-wrap: wrap; /* Allow wrapping */
+            justify-content: flex-end; /* Align to end */
+            flex-direction: row; /* Keep horizontal by default */
         }
 
         .action-buttons .btn-small {
@@ -766,12 +767,13 @@
                 font-size: 1.3rem;
             }
             .stats {
-                flex-direction: column; /* Stack stats vertically on smaller screens */
-                align-items: center;
+                flex-direction: row; /* Keep horizontal on larger mobile screens */
+                flex-wrap: wrap; /* Allow wrapping */
+                justify-content: center;
             }
             .stat-card {
-                flex: 1 1 80%; /* Take more width when stacked */
-                max-width: 250px; /* Limit max width */
+                flex: 1 1 calc(50% - 10px); /* Two items per row on medium screens */
+                max-width: unset; /* Remove max-width to allow flex to control */
             }
             .stat-number {
                 font-size: 2rem;
@@ -814,14 +816,15 @@
                 padding: 0.2rem 0.6rem;
             }
             .action-buttons {
-                flex-direction: column;
-                align-items: flex-end;
+                flex-direction: row; /* Keep horizontal on medium screens */
+                flex-wrap: wrap;
+                justify-content: flex-end;
             }
             .action-buttons .btn-small {
                 padding: 0.5rem 0.8rem;
                 font-size: 0.8rem;
-                width: 100%;
-                margin-bottom: 0.5rem;
+                width: auto; /* Allow buttons to size naturally */
+                margin-bottom: 0; /* Remove extra margin */
             }
             .modal-content {
                 margin: 10% auto;
@@ -843,7 +846,8 @@
                 font-size: 1.1rem;
             }
             .stats {
-                flex-direction: column; /* Ensure stacking on very small screens */
+                flex-direction: column; /* Stack vertically on very small screens */
+                align-items: center;
             }
             .stat-card {
                 padding: 0.8rem; /* Even smaller padding */
@@ -899,9 +903,15 @@
                 font-size: 0.65rem;
                 padding: 0.15rem 0.5rem;
             }
+            .action-buttons {
+                flex-direction: column; /* Stack vertically on very small screens */
+                align-items: flex-end;
+            }
             .action-buttons .btn-small {
                 padding: 0.4rem 0.6rem;
                 font-size: 0.75rem;
+                width: 100%; /* Take full width when stacked */
+                margin-bottom: 0.5rem;
             }
         }
 
