@@ -134,58 +134,46 @@
             margin-bottom: 2.5rem;
         }
 
-        /* Homepage Stats - Smaller and in one row */
-        .stats {
+        /* Homepage Birthday Design */
+        .birthday-design {
             display: flex;
-            flex-direction: row;
             flex-wrap: wrap;
-            gap: 10px;
+            justify-content: center;
+            gap: 20px;
             margin-bottom: 3rem;
-            justify-content: center;
-            overflow-x: auto;
-            padding-bottom: 10px;
+            padding: 20px;
+            background: linear-gradient(135deg, #f8f9ff, #e9ecef);
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
         }
 
-        .stat-row {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-        }
-
-        .stat-card {
-            background: linear-gradient(135deg, #ffffff, #f8f9ff);
-            padding: 1rem;
-            border-radius: 15px;
-            text-align: center;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.07);
-            border: 1px solid rgba(255, 255, 255, 0.5);
-            transition: all 0.3s ease;
-            transform: scale(0.95);
-            animation: popIn 0.5s ease-out forwards;
+        .birthday-item {
+            font-size: 3rem;
+            animation: popIn 0.8s ease-out forwards;
             opacity: 0;
-            flex: 0 1 calc(50% - 10px);
-            min-width: 120px;
-            max-width: 200px;
+            transform: scale(0.8);
+            position: relative;
+            padding: 10px;
+            border-radius: 15px;
+            background: rgba(255, 255, 255, 0.7);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
         }
+
+        .birthday-item:hover {
+            transform: scale(1.1);
+        }
+
+        .birthday-item:nth-child(1) { animation-delay: 0.1s; }
+        .birthday-item:nth-child(2) { animation-delay: 0.3s; }
+        .birthday-item:nth-child(3) { animation-delay: 0.5s; }
+        .birthday-item:nth-child(4) { animation-delay: 0.7s; }
 
         @keyframes popIn {
             to {
                 opacity: 1;
                 transform: scale(1);
             }
-        }
-
-        .stat-number {
-            font-size: 2rem; /* Smaller font size */
-            font-weight: 800;
-            color: #667eea;
-            margin-bottom: 0.3rem; /* Smaller margin */
-        }
-
-        .stat-label {
-            color: #7f8c8d;
-            font-size: 0.9rem; /* Smaller font size */
-            font-weight: 600;
         }
 
         /* Enhanced Enter Button */
@@ -850,20 +838,12 @@
             .homepage-header p {
                 font-size: 1.3rem;
             }
-            .stats {
-                flex-direction: row; /* Keep horizontal on larger mobile screens */
-                flex-wrap: wrap; /* Allow wrapping */
-                justify-content: center;
+            .birthday-design {
+                gap: 15px;
+                padding: 15px;
             }
-            .stat-card {
-                flex: 1 1 calc(50% - 10px); /* Two items per row on medium screens */
-                max-width: unset; /* Remove max-width to allow flex to control */
-            }
-            .stat-number {
-                font-size: 2rem;
-            }
-            .stat-label {
-                font-size: 0.9rem;
+            .birthday-item {
+                font-size: 2.5rem;
             }
             .enter-button {
                 padding: 1.5rem 3rem;
@@ -972,28 +952,13 @@
             .homepage-header p {
                 font-size: 1.1rem;
             }
-            .stats {
-                flex-direction: row; /* Ensure it stays row */
-                flex-wrap: nowrap; /* Prevent wrapping */
-                justify-content: center; /* Center items */
-                align-items: stretch; /* Stretch items to fill height if needed */
-                gap: 5px; /* Reduce gap further for small screens */
-                overflow-x: auto; /* Allow horizontal scrolling if content overflows */
-                padding-bottom: 5px; /* Add some padding for scrollbar if present */
+            .birthday-design {
+                gap: 10px;
+                padding: 10px;
             }
-            .stat-card {
-                padding: 0.8rem;
-                flex: 1 1 auto; /* Allow cards to grow/shrink */
-                min-width: 100px;
-                max-width: 150px;
-                animation: none; /* Remove animation for mobile */
-            }
-            .stat-number {
-                font-size: 1.2rem; /* Smaller font size for numbers */
-            }
-            .stat-label {
-                color: #7f8c8d;
-                font-size: 0.6rem; /* Smaller font size for labels */
+            .birthday-item {
+                font-size: 2rem;
+                padding: 8px;
             }
             .enter-button {
                 padding: 1.2rem 2.5rem;
@@ -1116,27 +1081,12 @@
             <p>Never miss a special day again!</p>
         </div>
 
-        <div class="stats">
-            <div class="stat-row">
-                <div class="stat-card">
-                    <div class="stat-number" id="totalBirthdays">0</div>
-                    <div class="stat-label">Total Birthdays</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number" id="todayBirthdays">0</div>
-                    <div class="stat-label">Today's Birthdays</div>
-                </div>
-            </div>
-            <div class="stat-row">
-                <div class="stat-card">
-                    <div class="stat-number" id="thisMonthBirthdays">0</div>
-                    <div class="stat-label">This Month</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number" id="upcomingBirthdays">0</div>
-                    <div class="stat-label">Next 7 Days</div>
-                </div>
-            </div>
+        <!-- Replaced Stats with Birthday Design -->
+        <div class="birthday-design">
+            <div class="birthday-item">🕯️</div>
+            <div class="birthday-item">🎁</div>
+            <div class="birthday-item">✨</div>
+            <div class="birthday-item">🥳</div>
         </div>
 
         <button class="enter-button" id="enterAppButton">
@@ -1248,7 +1198,7 @@
 
             init() {
                 this.bindEvents();
-                this.updateStats(); // Update homepage stats
+                // Removed updateStats() from init as stats are no longer displayed on homepage
                 this.checkTodaysBirthdays();
                 this.startDailyCheck();
                 this.createConfetti(); // Continuous confetti for the app
@@ -1357,7 +1307,7 @@
                 this.birthdays.push(birthday);
                 this.saveBirthdays();
                 this.renderBirthdays();
-                this.updateStats(); // Update homepage stats after adding
+                // Removed updateStats() from here as stats are no longer displayed on homepage
                 this.showNotification(`🎉 ${name}'s birthday added successfully!`);
                 this.createCelebrationEffect();
                 
@@ -1574,25 +1524,8 @@
                 this.renderBirthdays();
             }
 
-            updateStats() {
-                const today = new Date();
-                const currentMonth = today.getMonth();
-                
-                const todaysBirthdays = this.birthdays.filter(b => this.isBirthdayToday(b.birthdate));
-                const thisMonthBirthdays = this.birthdays.filter(b => {
-                    const birthDate = new Date(b.birthdate);
-                    return birthDate.getMonth() === currentMonth;
-                });
-                const upcomingBirthdays = this.birthdays.filter(b => {
-                    const days = this.getDaysUntilBirthday(b.birthdate);
-                    return days >= 0 && days <= 7;
-                });
-
-                document.getElementById('totalBirthdays').textContent = this.birthdays.length;
-                document.getElementById('todayBirthdays').textContent = todaysBirthdays.length;
-                document.getElementById('thisMonthBirthdays').textContent = thisMonthBirthdays.length;
-                document.getElementById('upcomingBirthdays').textContent = upcomingBirthdays.length;
-            }
+            // Removed updateStats() function as it's no longer needed for the homepage
+            // The stats were tied to the four boxes that have been removed.
 
             checkTodaysBirthdays() {
                 const todaysBirthdays = this.birthdays.filter(b => this.isBirthdayToday(b.birthdate));
@@ -1757,7 +1690,7 @@
             startDailyCheck() {
                 setInterval(() => {
                     this.checkTodaysBirthdays();
-                    this.updateStats();
+                    // Removed updateStats() from here as stats are no longer displayed on homepage
                 }, 3600000);
             }
 
@@ -1785,7 +1718,7 @@
                     this.birthdays = this.birthdays.filter(b => b.id != id);
                     this.saveBirthdays();
                     this.renderBirthdays();
-                    this.updateStats();
+                    // Removed updateStats() from here as stats are no longer displayed on homepage
                     this.showNotification('Birthday deleted successfully!');
                 }
             }
