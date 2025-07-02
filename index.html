@@ -846,19 +846,25 @@
                 font-size: 1.1rem;
             }
             .stats {
-                flex-direction: column; /* Stack vertically on very small screens */
-                align-items: center;
+                /* CHANGE: Keep horizontal even on very small screens */
+                flex-direction: row; /* Ensure it stays row */
+                flex-wrap: wrap; /* Allow wrapping */
+                justify-content: center; /* Center items */
+                align-items: flex-start; /* Align items to the start of the cross axis */
+                gap: 5px; /* Reduce gap further for small screens */
             }
             .stat-card {
-                padding: 0.8rem; /* Even smaller padding */
+                padding: 0.5rem; /* Even smaller padding */
                 min-width: unset; /* Remove min-width constraint */
-                flex: 1 1 90%; /* Take almost full width */
+                flex: 1 1 calc(33% - 5px); /* Try 3 items per row, or adjust as needed */
+                max-width: 100px; /* Limit max width to keep them small */
             }
             .stat-number {
-                font-size: 1.8rem;
+                font-size: 1.5rem; /* Smaller font size for numbers */
             }
             .stat-label {
-                font-size: 0.8rem;
+                color: #7f8c8d;
+                font-size: 0.7rem; /* Smaller font size for labels */
             }
             .enter-button {
                 padding: 1.2rem 2.5rem;
@@ -904,14 +910,22 @@
                 padding: 0.15rem 0.5rem;
             }
             .action-buttons {
-                flex-direction: column; /* Stack vertically on very small screens */
-                align-items: flex-end;
+                /* CHANGE: Keep horizontal even on very small screens */
+                flex-direction: row; /* Ensure it stays row */
+                flex-wrap: wrap; /* Allow wrapping */
+                justify-content: flex-end; /* Align to end */
+                gap: 0.3rem; /* Reduce gap further */
             }
             .action-buttons .btn-small {
-                padding: 0.4rem 0.6rem;
-                font-size: 0.75rem;
-                width: 100%; /* Take full width when stacked */
-                margin-bottom: 0.5rem;
+                padding: 0.3rem 0.5rem; /* Even smaller padding */
+                font-size: 0.7rem; /* Even smaller font size */
+                width: auto; /* Allow buttons to size naturally */
+                margin-bottom: 0; /* Remove extra margin */
+                flex: 1 1 auto; /* Allow buttons to shrink/grow based on content */
+                min-width: 60px; /* Ensure a minimum width */
+            }
+            .action-buttons .btn-small .icon { /* If icons are added to these buttons */
+                font-size: 0.8rem;
             }
         }
 
