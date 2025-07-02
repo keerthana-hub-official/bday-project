@@ -137,9 +137,13 @@
         /* Homepage Stats - Smaller and in one row */
         .stats {
             display: flex;
-            flex-direction: column;
+            flex-direction: row;
+            flex-wrap: wrap;
             gap: 10px;
             margin-bottom: 3rem;
+            justify-content: center;
+            overflow-x: auto;
+            padding-bottom: 10px;
         }
 
         .stat-row {
@@ -588,6 +592,17 @@
             transform: translateY(-2px);
             box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
         }
+        .action-buttons .btn-small.delete {
+            background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+            color: white;
+        }
+        .action-buttons .btn-small.delete:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(255, 107, 107, 0.3);
+        }
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
+        }
 
         @keyframes pulse {
             0%, 100% { transform: scale(1); }
@@ -967,10 +982,11 @@
                 padding-bottom: 5px; /* Add some padding for scrollbar if present */
             }
             .stat-card {
-                padding: 0.5rem; /* Even smaller padding */
-                flex: 0 0 auto; /* Don't grow or shrink, take content width */
-                min-width: 80px; /* Set a smaller minimum width */
-                max-width: 100px; /* Limit max width to keep them small */
+                padding: 0.8rem;
+                flex: 1 1 auto; /* Allow cards to grow/shrink */
+                min-width: 100px;
+                max-width: 150px;
+                animation: none; /* Remove animation for mobile */
             }
             .stat-number {
                 font-size: 1.2rem; /* Smaller font size for numbers */
@@ -1454,6 +1470,7 @@
                         <td class="action-buttons" data-label="Actions">
                             ${contactNumber ? `<button class="btn-small call" onclick="smartReminder.callContact('${contactNumber}')">📞 Call</button>` : ''}
                             ${contactNumber ? `<button class="btn-small whatsapp" onclick="smartReminder.openWhatsappModal('${birthday.id}')">💬 WhatsApp</button>` : ''}
+                            <button class="btn-small delete" onclick="smartReminder.deleteBirthday('${birthday.id}')">🗑️ Delete</button>
                         </td>
                     </tr>
                 `;
@@ -1760,6 +1777,16 @@
                 } catch (error) {
                     console.error('Error saving birthdays:', error);
                     this.showNotification('❌ Error saving data!', 3000);
+                }
+            }
+
+            deleteBirthday(id) {
+                if (confirm('Are you sure you want to delete this birthday?')) {
+                    this.birthdays = this.birthdays.filter(b => b.id != id);
+                    this.saveBirthdays();
+                    this.renderBirthdays();
+                    this.updateStats();
+                    this.showNotification('Birthday deleted successfully!');
                 }
             }
         }
