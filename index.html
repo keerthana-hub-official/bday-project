@@ -136,27 +136,32 @@
 
         /* Homepage Stats - Smaller and in one row */
         .stats {
-            display: flex; /* Use flexbox for single row */
-            flex-wrap: wrap; /* Allow wrapping on smaller screens */
-            justify-content: center; /* Center items */
-            gap: 10px; /* Smaller gap between cards */
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
             margin-bottom: 3rem;
+        }
+
+        .stat-row {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
         }
 
         .stat-card {
             background: linear-gradient(135deg, #ffffff, #f8f9ff);
-            padding: 1rem; /* Smaller padding */
-            border-radius: 15px; /* Slightly smaller border-radius */
+            padding: 1rem;
+            border-radius: 15px;
             text-align: center;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.07); /* Slightly less pronounced shadow */
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.07);
             border: 1px solid rgba(255, 255, 255, 0.5);
             transition: all 0.3s ease;
             transform: scale(0.95);
             animation: popIn 0.5s ease-out forwards;
             opacity: 0;
-            flex: 1 1 calc(25% - 10px); /* 4 items per row, accounting for gap */
-            min-width: 120px; /* Minimum width for each card */
-            max-width: 180px; /* Max width to keep them small */
+            flex: 0 1 calc(50% - 10px);
+            min-width: 120px;
+            max-width: 200px;
         }
 
         @keyframes popIn {
@@ -646,14 +651,15 @@
         }
 
         .filter-btn {
-            padding: 0.8rem 1.5rem;
+            padding: 0.6rem 1rem;
             border: 2px solid #e0e6ed;
             background: white;
             border-radius: 25px;
             cursor: pointer;
             transition: all 0.3s ease;
-            font-size: 0.9rem;
+            font-size: 0.8rem;
             font-weight: 600;
+            white-space: nowrap;
         }
 
         .filter-btn.active,
@@ -886,29 +892,27 @@
                 background: linear-gradient(135deg, #f8f9fa, #e9ecef); /* Background for each card */
             }
 
-            .birthday-table td {
-                display: block; /* Make table cells behave like block elements */
-                text-align: right; /* Align content to the right */
-                padding: 0.5rem 0; /* Vertical padding, no horizontal padding */
-                border-bottom: 1px dashed #e0e6ed; /* Dashed border for separation */
-                position: relative; /* For positioning the data-label */
-                font-size: 0.9rem;
+            .birthday-table tr {
+                display: flex;
+                flex-wrap: wrap;
+                margin-bottom: 1rem;
+                border: 1px solid #e0e6ed;
+                border-radius: 15px;
+                padding: 0.5rem;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+                background: linear-gradient(135deg, #f8f9fa, #e9ecef);
             }
 
-            .birthday-table td:last-child {
-                border-bottom: 0; /* No border for the last cell */
-                padding-bottom: 0; /* No padding at the bottom of the last cell */
+            .birthday-table td {
+                flex: 1;
+                padding: 0.5rem;
+                text-align: center;
+                font-size: 0.8rem;
+                min-width: 100px;
             }
 
             .birthday-table td::before {
-                content: attr(data-label); /* Use data-label for content */
-                position: absolute;
-                left: 0;
-                width: 45%; /* Space for the label */
-                padding-left: 10px; /* Indent the label */
-                font-weight: bold;
-                text-align: left;
-                color: #34495e;
+                display: none;
             }
 
             /* Specific adjustments for action buttons within the responsive table */
@@ -1078,21 +1082,25 @@
         </div>
 
         <div class="stats">
-            <div class="stat-card">
-                <div class="stat-number" id="totalBirthdays">0</div>
-                <div class="stat-label">Total Birthdays</div>
+            <div class="stat-row">
+                <div class="stat-card">
+                    <div class="stat-number" id="totalBirthdays">0</div>
+                    <div class="stat-label">Total Birthdays</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="todayBirthdays">0</div>
+                    <div class="stat-label">Today's Birthdays</div>
+                </div>
             </div>
-            <div class="stat-card">
-                <div class="stat-number" id="todayBirthdays">0</div>
-                <div class="stat-label">Today's Birthdays</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-number" id="thisMonthBirthdays">0</div>
-                <div class="stat-label">This Month</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-number" id="upcomingBirthdays">0</div>
-                <div class="stat-label">Next 7 Days</div>
+            <div class="stat-row">
+                <div class="stat-card">
+                    <div class="stat-number" id="thisMonthBirthdays">0</div>
+                    <div class="stat-label">This Month</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="upcomingBirthdays">0</div>
+                    <div class="stat-label">Next 7 Days</div>
+                </div>
             </div>
         </div>
 
