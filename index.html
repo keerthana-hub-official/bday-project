@@ -894,21 +894,22 @@
 
             .birthday-table tr {
                 display: flex;
-                flex-wrap: wrap;
+                flex-direction: column;
                 margin-bottom: 1rem;
                 border: 1px solid #e0e6ed;
                 border-radius: 15px;
-                padding: 0.5rem;
+                padding: 1rem;
                 box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-                background: linear-gradient(135deg, #f8f9fa, #e9ecef);
             }
 
             .birthday-table td {
-                flex: 1;
-                padding: 0.5rem;
-                text-align: center;
-                font-size: 0.8rem;
-                min-width: 100px;
+                padding: 0.5rem 0;
+                text-align: left;
+                font-size: 0.9rem;
+                min-width: unset;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
             }
 
             .birthday-table td::before {
@@ -917,10 +918,11 @@
 
             /* Specific adjustments for action buttons within the responsive table */
             .action-buttons {
-                justify-content: flex-start; /* Align buttons to the left */
-                margin-top: 10px; /* Space from previous content */
-                flex-wrap: wrap;
+                display: grid;
+                grid-template-columns: 1fr 1fr;
                 gap: 0.5rem;
+                margin-top: 1rem;
+                width: 100%;
             }
             .action-buttons .btn-small {
                 flex: 1 1 auto; /* Allow buttons to take available space */
@@ -1483,7 +1485,7 @@
                     return;
                 }
 
-                message = message.replace(/\[Name\]/g, this.selectedBirthdayForWhatsapp.name);
+                message = message.replace(/\$Name\$/g, this.selectedBirthdayForWhatsapp.name);
 
                 const whatsappUrl = `https://wa.me/${contactNumber}?text=${encodeURIComponent(message)}`;
                 window.open(whatsappUrl, '_blank');
