@@ -90,16 +90,20 @@
         }
 
         .homepage-header h1 {
-            font-size: 3.5rem;
+            font-size: 2.5rem;
             color: #2c3e50;
             margin-bottom: 1rem;
             text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.15);
-            
-            /* Added flex properties for vertical stacking and centering */
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
+        }
+
+        @media (min-width: 768px) {
+            .homepage-header h1 {
+                font-size: 3.5rem;
+            }
         }
 
         .homepage-header h1 .emoji {
@@ -624,9 +628,21 @@
 
         .filter-buttons {
             display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-            justify-content: center;
+            flex-direction: column; /* Stack rows vertically */
+            gap: 0.5rem; /* Space between rows */
+        }
+        .filter-row {
+            display: flex;
+            gap: 1rem; /* Space between buttons in a row */
+            justify-content: center; /* Center buttons in the row */
+            flex-wrap: nowrap; /* Prevent wrapping within a row */
+            overflow-x: auto; /* Allow horizontal scrolling if buttons overflow */
+            padding-bottom: 5px; /* Add some padding for scrollbar if present */
+        }
+        @media (max-width: 480px) {
+            .filter-row {
+                justify-content: flex-start; /* Align to start on small screens */
+            }
         }
 
         .filter-btn {
@@ -861,26 +877,27 @@
             }
 
             .birthday-table tr {
-                display: block; /* Make each row a block */
-                margin-bottom: 1rem; /* Space between rows */
+                display: block; /* Make table rows behave like block elements */
+                margin-bottom: 1rem; /* Add space between rows */
                 border: 1px solid #e0e6ed; /* Add a border to each "card" */
-                border-radius: 15px;
-                padding: 1rem;
-                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+                border-radius: 15px; /* Rounded corners for the "card" */
+                padding: 1rem; /* Padding inside each "card" */
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05); /* Subtle shadow */
+                background: linear-gradient(135deg, #f8f9fa, #e9ecef); /* Background for each card */
             }
 
             .birthday-table td {
-                display: block; /* Make each cell a block */
+                display: block; /* Make table cells behave like block elements */
                 text-align: right; /* Align content to the right */
-                padding-left: 50%; /* Make space for the label */
-                position: relative;
-                border-bottom: 1px dashed #eee; /* Lighter separator */
-                font-size: 0.75rem; /* Adjust font size for cells */
-                padding: 0.6rem; /* Adjust padding for cells */
+                padding: 0.5rem 0; /* Vertical padding, no horizontal padding */
+                border-bottom: 1px dashed #e0e6ed; /* Dashed border for separation */
+                position: relative; /* For positioning the data-label */
+                font-size: 0.9rem;
             }
 
             .birthday-table td:last-child {
                 border-bottom: 0; /* No border for the last cell */
+                padding-bottom: 0; /* No padding at the bottom of the last cell */
             }
 
             .birthday-table td::before {
@@ -888,7 +905,7 @@
                 position: absolute;
                 left: 0;
                 width: 45%; /* Space for the label */
-                padding-left: 10px;
+                padding-left: 10px; /* Indent the label */
                 font-weight: bold;
                 text-align: left;
                 color: #34495e;
@@ -909,11 +926,11 @@
                 font-size: 0.8rem;
             }
             .birthday-name-cell {
-                font-size: 0.9rem;
+                font-size: 1rem; /* Slightly larger for readability */
             }
             .birthday-age, .days-until {
-                font-size: 0.7rem;
-                padding: 0.2rem 0.6rem;
+                font-size: 0.8rem;
+                padding: 0.3rem 0.8rem;
             }
             .modal-content {
                 margin: 10% auto;
@@ -993,19 +1010,19 @@
             }
             .birthday-table td {
                 padding: 0.4rem;
-                font-size: 0.7rem;
+                font-size: 0.8rem; /* Adjusted for readability */
                 padding-left: 45%;
             }
             .birthday-table td::before {
                 width: 40%;
-                font-size: 0.75rem;
+                font-size: 0.85rem; /* Adjusted for readability */
             }
             .birthday-name-cell {
-                font-size: 0.8rem;
+                font-size: 0.9rem; /* Adjusted for readability */
             }
             .birthday-age, .days-until {
-                font-size: 0.65rem;
-                padding: 0.15rem 0.5rem;
+                font-size: 0.7rem; /* Adjusted for readability */
+                padding: 0.2rem 0.6rem;
             }
             .action-buttons {
                 flex-direction: row; /* Ensure it stays row */
@@ -1015,7 +1032,7 @@
             }
             .action-buttons .btn-small {
                 padding: 0.3rem 0.5rem; /* Even smaller padding */
-                font-size: 0.7rem; /* Even smaller font size */
+                font-size: 0.75rem; /* Even smaller font size */
                 width: auto; /* Allow buttons to size naturally */
                 margin-bottom: 0; /* Remove extra margin */
                 flex: 1 1 auto; /* Allow buttons to shrink/grow based on content */
@@ -1118,11 +1135,15 @@
             <h2 class="section-title">📅 Birthday List</h2>
             <div class="filters">
                 <div class="filter-buttons">
-                    <button class="filter-btn active" data-filter="all">🎈 All</button>
-                    <button class="filter-btn" data-filter="today">🎂 Today</button>
-                    <button class="filter-btn" data-filter="thisMonth">📅 This Month</button>
-                    <button class="filter-btn" data-filter="upcoming">⏰ Next 7 Days</button>
-                    <button class="filter-btn" data-filter="monthWise">🗓️ Month Wise</button>
+                    <div class="filter-row">
+                        <button class="filter-btn active" data-filter="all">🎈 All</button>
+                        <button class="filter-btn" data-filter="today">🎂 Today</button>
+                        <button class="filter-btn" data-filter="thisMonth">📅 This Month</button>
+                    </div>
+                    <div class="filter-row">
+                        <button class="filter-btn" data-filter="upcoming">⏰ Next 7 Days</button>
+                        <button class="filter-btn" data-filter="monthWise">🗓️ Month Wise</button>
+                    </div>
                 </div>
             </div>
             <div id="birthdayContainer">
